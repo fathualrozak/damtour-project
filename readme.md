@@ -9,9 +9,10 @@
  4. $ gulp
  
  Installation:
- 1. Put project on server e.g. htdocs/damtour-project
- 2. On project root dir run : $ composer install then composer update (all dependency will be installed)
- 3. Setting up your database configuration on .env file
- 4. Last, run $ php artisan migrate
+  1. Put project on server e.g. htdocs/damtour-project
+  2. On project root dir run : $ composer install then composer update (all dependency will be installed)
+  3. Then run $ gulp
+  4. Setting up your database configuration on .env file
+  5. Last, run $ php artisan migrate
  
  
