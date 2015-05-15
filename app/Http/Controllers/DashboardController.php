@@ -22,7 +22,7 @@ class DashboardController extends Controller {
 	 */
 	public function __construct()
 	{
-		$this->middleware('auth');
+//		$this->middleware('admin');
 	}
 
 	/**
@@ -32,9 +32,10 @@ class DashboardController extends Controller {
 	 */
 	public function index()
 	{
-        if (Auth::user()) {
-		    return Auth::user();//view('home');
-        }
+//        if (Auth::user()) {
+//		    return Auth::user();//view('home');
+//        }
+        return view('form');
 	}
 
 }
