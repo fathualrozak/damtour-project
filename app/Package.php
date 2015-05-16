@@ -8,4 +8,9 @@ class Package extends Model {
 
     protected $fillable = ['package_name', 'package_description'];
 
+    public function program()
+    {
+        return $this->hasMany('App\Program');
+    }
+
 }

@@ -20,4 +20,19 @@ class Program extends Model {
         'currency_id'
     ];
 
+    public function service()
+    {
+        return $this->belongsTo('App\Service');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\ProgramCategory');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo('App\Package');
+    }
+
 }

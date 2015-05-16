@@ -7,8 +7,9 @@ class PackageTableSeeder extends Seeder {
 
     public function run()
     {
-        Package::create(['currency_name' => 'idr', 'currency_description' => 'Indonesian Rupiah']);
-        Package::create(['currency_name' => 'usd', 'currency_description' => 'United States Dollar']);
+        Package::create(['package_name' => 'Favorite', 'package_description' => 'Paket umroh favorite']);
+        Package::create(['package_name' => 'Premium', 'package_description' => 'Paket umroh premium']);
+        Package::create(['package_name' => 'Executive', 'package_description' => 'Paket umroh eksekutif']);
     }
 
 }

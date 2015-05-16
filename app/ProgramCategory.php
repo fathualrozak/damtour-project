@@ -8,4 +8,9 @@ class ProgramCategory extends Model {
 
     protected $fillable = ['category_name', 'category_description'];
 
+    public function program()
+    {
+        return $this->hasMany('App\Program');
+    }
+
 }

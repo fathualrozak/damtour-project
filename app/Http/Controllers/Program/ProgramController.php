@@ -2,6 +2,7 @@
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Program;
 
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class ProgramController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $programs = Program::all();
+
+		return view('table', compact('programs'));
 	}
 
 	/**
