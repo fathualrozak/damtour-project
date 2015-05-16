@@ -15,7 +15,7 @@ Route::get('/', 'DashboardController@index');
 
 Route::get('dashboard', 'DashboardController@index');
 
-Route::resource('program', 'ProgramController');
+Route::resource('program', 'Program\ProgramController');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

@@ -49,16 +49,6 @@ class CreateProgramsTable extends Migration {
 	 */
 	public function down()
 	{
-        Schema::table('programs', function(Blueprint $table)
-        {
-
-            $table->dropForeign('service_id');
-            $table->dropForeign('program_category_id');
-            $table->dropForeign('package_id');
-            $table->dropForeign('currency_id');
-
-        });
-
         Schema::drop('programs');
 	}
 
