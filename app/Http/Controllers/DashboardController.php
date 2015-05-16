@@ -35,7 +35,7 @@ class DashboardController extends Controller {
 //        if (Auth::user()) {
 //		    return Auth::user();//view('home');
 //        }
-        return view('form');
+        return view('dashboard');
 	}
 
 }
