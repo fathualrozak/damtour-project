@@ -17,8 +17,8 @@ class SetupProgramReferencesTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('currency_name');
-            $table->text('currency_description');
+            $table->string('name');
+            $table->text('description');
 
             $table->timestamps();
         });
@@ -27,8 +27,8 @@ class SetupProgramReferencesTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('service_name');
-            $table->text('service_description');
+            $table->string('name');
+            $table->text('description');
 
             $table->timestamps();
         });
@@ -37,8 +37,8 @@ class SetupProgramReferencesTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('category_name');
-            $table->text('category_description');
+            $table->string('name');
+            $table->text('description');
 
             $table->timestamps();
         });
@@ -47,8 +47,8 @@ class SetupProgramReferencesTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('package_name');
-            $table->text('package_description');
+            $table->string('name');
+            $table->text('description');
 
             $table->timestamps();
         });

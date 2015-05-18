@@ -7,8 +7,8 @@ class ProgramCategoryTableSeeder extends Seeder {
 
     public function run()
     {
-        ProgramCategory::create(['category_name' => 'Reguler', 'category_description' => 'Kategori program reguler']);
-        ProgramCategory::create(['category_name' => 'Promo', 'category_description' => 'Kategori program promo']);
+        ProgramCategory::create(['name' => 'Reguler', 'description' => 'Kategori program reguler']);
+        ProgramCategory::create(['name' => 'Promo', 'description' => 'Kategori program promo']);
     }
 
 }

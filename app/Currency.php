@@ -6,6 +6,6 @@ class Currency extends Model {
 
 	protected $table = 'currencies';
 
-    protected $fillable = ['currency_name', 'currency_description'];
+    protected $fillable = ['name', 'description'];
 
 }

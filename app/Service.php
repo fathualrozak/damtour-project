@@ -6,7 +6,7 @@ class Service extends Model {
 
 	protected $table = 'services';
 
-    protected $fillable = ['service_name', 'service_description'];
+    protected $fillable = ['name', 'description'];
 
     public function program()
     {

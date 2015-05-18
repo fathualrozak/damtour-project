@@ -1,10 +1,14 @@
 <?php namespace App\Http\Controllers\Program;
 
+use App\Currency;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Package;
 use App\Program;
 
-use Illuminate\Http\Request;
+use App\ProgramCategory;
+use App\Service;
+use Request;
 
 class ProgramController extends Controller {
 
@@ -27,7 +31,12 @@ class ProgramController extends Controller {
 	 */
 	public function create()
 	{
-		return view('program.create');
+        $services = Service::all();
+        $categories = ProgramCategory::all();
+        $packages = Package::all();
+        $currencies = Currency::all();
+
+        return view('program.create', compact('services', 'categories', 'packages', 'currencies'));
 	}
 
 	/**
@@ -37,7 +46,10 @@ class ProgramController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$input = Request::all();
+        Program::create($input);
+
+        return redirect('program');
 	}
 
 	/**

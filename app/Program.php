@@ -7,13 +7,12 @@ class Program extends Model {
 	protected $table = 'programs';
 
     protected $fillable = [
-        'program_name',
-        'program_schedule',
-        'program_days_length',
+        'name',
+        'schedule',
+        'days_length',
         'price',
-        'price_currency',
-        'program_payment_before',
-        'program_description',
+        'payment_before',
+        'description',
         'service_id',
         'program_category_id',
         'package_id',
@@ -25,14 +24,13 @@ class Program extends Model {
         return $this->belongsTo('App\Service');
     }
 
-    public function category()
-    {
-        return $this->belongsTo('App\ProgramCategory');
-    }
-
     public function package()
     {
         return $this->belongsTo('App\Package');
+    }
+
+    public function category() {
+        return 'Kategory';
     }
 
 }

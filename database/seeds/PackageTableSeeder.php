@@ -7,9 +7,9 @@ class PackageTableSeeder extends Seeder {
 
     public function run()
     {
-        Package::create(['package_name' => 'Favorite', 'package_description' => 'Paket umroh favorite']);
-        Package::create(['package_name' => 'Premium', 'package_description' => 'Paket umroh premium']);
-        Package::create(['package_name' => 'Executive', 'package_description' => 'Paket umroh eksekutif']);
+        Package::create(['name' => 'Favorite', 'description' => 'Paket umroh favorite']);
+        Package::create(['name' => 'Premium', 'description' => 'Paket umroh premium']);
+        Package::create(['name' => 'Executive', 'description' => 'Paket umroh eksekutif']);
     }
 
 }

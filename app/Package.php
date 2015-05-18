@@ -6,7 +6,7 @@ class Package extends Model {
 
 	protected $table = 'packages';
 
-    protected $fillable = ['package_name', 'package_description'];
+    protected $fillable = ['name', 'description'];
 
     public function program()
     {

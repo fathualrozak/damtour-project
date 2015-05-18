@@ -16,12 +16,12 @@ class CreateProgramsTable extends Migration {
         {
             $table->increments('id');
 
-            $table->string('program_name');
-            $table->date('program_schedule');
-            $table->integer('program_days_length');
+            $table->string('name');
+            $table->date('schedule');
+            $table->integer('days_length');
             $table->double('price');
-            $table->date('program_payment_before');
-            $table->text('program_description');
+            $table->date('payment_before');
+            $table->text('description');
 
             $table->integer('service_id')->unsigned();
             $table->integer('program_category_id')->unsigned();
@@ -31,15 +31,15 @@ class CreateProgramsTable extends Migration {
             $table->timestamps();
         });
 
-        Schema::table('programs', function(Blueprint $table)
-        {
-
-            $table->foreign('service_id')->references('id')->on('services');
-            $table->foreign('program_category_id')->references('id')->on('program_categories');
-            $table->foreign('package_id')->references('id')->on('packages');
-            $table->foreign('currency_id')->references('id')->on('currencies');
-
-        });
+//        Schema::table('programs', function(Blueprint $table)
+//        {
+//
+//            $table->foreign('service_id')->references('id')->on('services');
+//            $table->foreign('program_category_id')->references('id')->on('program_categories');
+//            $table->foreign('package_id')->references('id')->on('packages');
+//            $table->foreign('currency_id')->references('id')->on('currencies');
+//
+//        });
 	}
 
 	/**

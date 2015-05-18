@@ -7,8 +7,8 @@ class CurrencyTableSeeder extends Seeder {
 
     public function run()
     {
-        Currency::create(['currency_name' => 'idr', 'currency_description' => 'Indonesian Rupiah']);
-        Currency::create(['currency_name' => 'usd', 'currency_description' => 'United States Dollar']);
+        Currency::create(['name' => 'idr', 'description' => 'Indonesian Rupiah']);
+        Currency::create(['name' => 'usd', 'description' => 'United States Dollar']);
     }
 
 }
