@@ -8,12 +8,12 @@
                    Tambah Program
                </div>
                <div class="panel-body">
-               {!! Form::open(array('route' => 'program.store')) !!}
+               {!! Form::model($program, array('route' => 'program.update')) !!}
                     @include('program._form')
                {!! Form::close() !!}
                </div>
 
            </div>
        </div>
-            
+
 @stop

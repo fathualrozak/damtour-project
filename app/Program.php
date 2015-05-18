@@ -19,6 +19,11 @@ class Program extends Model {
         'currency_id'
     ];
 
+    public function programCategory()
+    {
+        return $this->belongsTo('App\ProgramCategory', 'program_category_id');
+    }
+
     public function service()
     {
         return $this->belongsTo('App\Service');

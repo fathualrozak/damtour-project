@@ -31,15 +31,15 @@ class CreateProgramsTable extends Migration {
             $table->timestamps();
         });
 
-//        Schema::table('programs', function(Blueprint $table)
-//        {
-//
-//            $table->foreign('service_id')->references('id')->on('services');
-//            $table->foreign('program_category_id')->references('id')->on('program_categories');
-//            $table->foreign('package_id')->references('id')->on('packages');
-//            $table->foreign('currency_id')->references('id')->on('currencies');
-//
-//        });
+        Schema::table('programs', function(Blueprint $table)
+        {
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
+            $table->foreign('program_category_id')->references('id')->on('program_categories')->onDelete('cascade');
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');
+            $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
+
+        });
 	}
 
 	/**

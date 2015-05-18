@@ -71,7 +71,13 @@ class ProgramController extends Controller {
 	 */
 	public function edit($id)
 	{
-		//
+        $program = Program::find($id);
+        $services = Service::all();
+        $categories = ProgramCategory::all();
+        $packages = Package::all();
+        $currencies = Currency::all();
+
+        return view('program.edit', compact('program', 'services', 'categories', 'packages', 'currencies'));
 	}
 
 	/**
@@ -93,7 +99,7 @@ class ProgramController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		Program::del($id);
+		$program = Program::find($id);
 
         return redirect('program');
 	}
