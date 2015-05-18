@@ -2,6 +2,9 @@
 @section('page_heading','Program')
 
     @section('section')
+        <div>
+            <a href="{{ route('program.create') }}" class="btn btn-default"><i class="fa fa-plus-circle"></i></a>
+        </div>
         <table class="table table-condensed table-striped">
             <thead>
                 <tr>

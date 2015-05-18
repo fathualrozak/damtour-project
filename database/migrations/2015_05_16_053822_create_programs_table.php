@@ -19,7 +19,7 @@ class CreateProgramsTable extends Migration {
             $table->string('program_name');
             $table->date('program_schedule');
             $table->integer('program_days_length');
-            $table->decimal('price');
+            $table->double('price');
             $table->date('program_payment_before');
             $table->text('program_description');
 

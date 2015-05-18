@@ -17,7 +17,7 @@ class ProgramController extends Controller {
 	{
         $programs = Program::all();
 
-		return view('table', compact('programs'));
+		return view('program.index', compact('programs'));
 	}
 
 	/**
@@ -27,7 +27,7 @@ class ProgramController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('program.create');
 	}
 
 	/**
