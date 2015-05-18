@@ -29,8 +29,4 @@ class Program extends Model {
         return $this->belongsTo('App\Package');
     }
 
-    public function category() {
-        return 'Kategory';
-    }
-
 }

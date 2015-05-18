@@ -93,7 +93,9 @@ class ProgramController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		Program::del($id);
+
+        return redirect('program');
 	}
 
 }
