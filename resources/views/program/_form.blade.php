@@ -4,37 +4,16 @@
 </div>
 <div class="form-group">
     {!! Form::label('service_id', 'Layanan') !!}
-    <select name="service_id" class="form-control">
-        @foreach($services as $service)
-            <option value="{{ $service->id }}">
-            {{ $service->name }}
-            </option>
-        @endforeach
-    </select>
+    {!! Form::select('service_id', $services, null, array('class' => 'form-control')) !!}
 </div>
 <div class="form-group">
     {!! Form::label('program_category_id', 'Kategori') !!}
-    <select name="program_category_id" class="form-control">
-        @foreach($categories as $category)
-            <option value="{{ $category->id }}">
-            {{ $category->name }}
-            </option>
-        @endforeach
-    </select>
+    {!! Form::select('program_category_id', $categories, null, array('class' => 'form-control')) !!}
 </div>
 <div class="form-group">
     {!! Form::label('package_id', 'Paket') !!}
-    <select name="package_id" class="form-control">
-        @foreach($packages as $package)
-            <option value="{{ $package->id }}">
-            {{ $package->name }}
-            </option>
-        @endforeach
-    </select>
+    {!! Form::select('package_id', $packages, null, array('class' => 'form-control')) !!}
 </div>
-
-
-
 <div class="form-group">
     {!! Form::label('schedule', 'Tanggal Keberangkatan') !!}
     {!! Form::input('date', 'schedule', null, array('class' => 'form-control')) !!}
@@ -49,13 +28,7 @@
 </div>
 <div class="form-group">
     {!! Form::label('currency_id', 'Mata Uang') !!}
-    <select name="currency_id" class="form-control">
-        @foreach($currencies as $currency)
-            <option value="{{ $currency->id }}">
-            {{ strtoupper($currency->name) }}
-            </option>
-        @endforeach
-    </select>
+    {!! Form::select('currency_id', $currencies, null, array('class' => 'form-control')) !!}
 </div>
 <div class="form-group">
     {!! Form::label('payment-before', 'Batas Lunas') !!}

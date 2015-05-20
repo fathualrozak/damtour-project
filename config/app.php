@@ -145,7 +145,8 @@ return [
 		'App\Providers\ConfigServiceProvider',
 		'App\Providers\EventServiceProvider',
 		'App\Providers\RouteServiceProvider',
-        'Zizaco\Entrust\EntrustServiceProvider'
+        'Zizaco\Entrust\EntrustServiceProvider',
+        'Cartalyst\Converter\Laravel\ConverterServiceProvider'
 	],
 
 	/*
@@ -195,7 +196,8 @@ return [
 		'View'      => 'Illuminate\Support\Facades\View',
         'Entrust'   => 'Zizaco\Entrust\EntrustFacade',
         'Form'      => 'Illuminate\Html\FormFacade',
-        'Html'      => 'Illuminate\Html\HtmlFacade'
+        'Html'      => 'Illuminate\Html\HtmlFacade',
+        'Converter' => 'Cartalyst\Converter\Laravel\Facades\Converter'
 	],
 
 ];

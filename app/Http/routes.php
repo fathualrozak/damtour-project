@@ -15,7 +15,10 @@ Route::get('/', 'DashboardController@index');
 
 Route::get('dashboard', 'DashboardController@index');
 
-Route::resource('program', 'Program\ProgramController');
+Route::resource('program', 'ProgramController');
+
+Route::resource('jamaah', 'JamaahController',
+                ['except' => ['destroy']]);
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

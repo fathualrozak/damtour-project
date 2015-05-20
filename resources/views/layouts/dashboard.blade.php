@@ -252,13 +252,13 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('program') }}"><i class="fa fa-table fa-fw"></i> Program</a>
+                            <a href="{{ route('program.index') }}"><i class="fa fa-table fa-fw"></i> Program</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Inventory</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Jamaah</a>
+                            <a href="{{ route('jamaah.index') }}"><i class="fa fa-male fa-fw"></i> Jamaah</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
@@ -289,7 +289,7 @@
         <div id="page-wrapper">
 			 <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">@yield('page_heading')</h1>
+                    <h3 class="page-header">@yield('page_heading')</h3>
                 </div>
                 <!-- /.col-lg-12 -->
            </div>

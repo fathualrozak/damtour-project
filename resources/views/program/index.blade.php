@@ -27,13 +27,15 @@
                     <td>{{ $program->programCategory->name }}</td>
                     <td>{{ $program->package->name }}</td>
                     <td>{{ $program->schedule }}</td>
-                    <td>{{ $program->days_length }}</td>
+                    <td>{{ $program->days_length }} Hari</td>
                     <td>{{ $program->price }}</td>
                     <td>{{ $program->payment_before }}</td>
                     <td>{{ $program->description }}</td>
                     <td>
+                    {!! Form::open(['method' => 'DELETE', 'route' => ['program.destroy', $program->id]]) !!}
                         <a href="{{ route('program.edit', $program->id) }}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                        <a href="{{ route('program.destroy', $program->id) }}" class="btn btn-info"><i class="fa fa-times"></i></a>
+                        {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                    {!! Form::close() !!}
                     </td>
         @endforeach
             </tbody>

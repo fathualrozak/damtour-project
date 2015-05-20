@@ -13,4 +13,8 @@ class Service extends Model {
         return $this->hasMany('App\Program');
     }
 
+    public function listname() {
+        return $this->name;
+    }
+
 }

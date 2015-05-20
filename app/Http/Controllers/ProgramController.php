@@ -1,14 +1,14 @@
-<?php namespace App\Http\Controllers\Program;
+<?php namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 use App\Currency;
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Package;
 use App\Program;
-
-use App\ProgramCategory;
 use App\Service;
-use Request;
+use App\ProgramCategory;
+
 
 class ProgramController extends Controller {
 
@@ -31,10 +31,10 @@ class ProgramController extends Controller {
 	 */
 	public function create()
 	{
-        $services = Service::all();
-        $categories = ProgramCategory::all();
-        $packages = Package::all();
-        $currencies = Currency::all();
+        $services = Service::all()->lists('name', 'id');
+        $categories = ProgramCategory::all()->lists('name', 'id');
+        $packages = Package::all()->lists('name', 'id');
+        $currencies = Currency::all()->lists('name', 'id');
 
         return view('program.create', compact('services', 'categories', 'packages', 'currencies'));
 	}
@@ -44,10 +44,9 @@ class ProgramController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		$input = Request::all();
-        Program::create($input);
+        Program::create($request->all());
 
         return redirect('program');
 	}
@@ -72,10 +71,11 @@ class ProgramController extends Controller {
 	public function edit($id)
 	{
         $program = Program::find($id);
-        $services = Service::all();
-        $categories = ProgramCategory::all();
-        $packages = Package::all();
-        $currencies = Currency::all();
+
+        $services = Service::all()->lists('name', 'id');
+        $categories = ProgramCategory::all()->lists('name', 'id');
+        $packages = Package::all()->lists('name', 'id');
+        $currencies = Currency::all()->lists('name', 'id');
 
         return view('program.edit', compact('program', 'services', 'categories', 'packages', 'currencies'));
 	}
@@ -86,9 +86,12 @@ class ProgramController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update($id, Request $request)
 	{
-		//
+		$program = Program::find($id);
+        $program->fill($request->input())->save();
+
+        return redirect('program');
 	}
 
 	/**
@@ -100,6 +103,7 @@ class ProgramController extends Controller {
 	public function destroy($id)
 	{
 		$program = Program::find($id);
+        $program->delete();
 
         return redirect('program');
 	}

@@ -8,7 +8,7 @@
                    Tambah Program
                </div>
                <div class="panel-body">
-               {!! Form::model($program, array('route' => 'program.update')) !!}
+               {!! Form::model($program, ['method' => 'PATCH', 'route' => ['program.update', $program->id]] ) !!}
                     @include('program._form')
                {!! Form::close() !!}
                </div>
