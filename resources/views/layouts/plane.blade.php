@@ -13,9 +13,11 @@
 	<meta content="" name="author"/>
 
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
+	<link rel="stylesheet" href="{{ asset("assets/stylesheets/custom.css") }}" />
 </head>
 <body>
 	@yield('body')
 	<script src="{{ asset("assets/scripts/frontend.js") }}" type="text/javascript"></script>
+	<script src="{{ asset("assets/scripts/global.js") }}" type="text/javascript"></script>
 </body>
 </html>

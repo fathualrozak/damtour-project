@@ -38,7 +38,5 @@
     {!! Form::label('payment-before', 'Keterangan') !!}
     {!! Form::textarea('description', null, array('class' => 'form-control')) !!}
 </div>
-<div class="form-group">
-    {!! Form::submit('Simpan', ['class' => 'btn btn-primary']) !!}
-</div>
+<hr>
 

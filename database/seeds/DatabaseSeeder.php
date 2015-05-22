@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('ProgramCategoryTableSeeder');
         $this->call('DistrictTableSeeder');
         $this->call('CityTableSeeder');
+        $this->call('RelationshipTableSeeder');
     }
 
 }

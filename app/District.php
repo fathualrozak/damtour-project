@@ -8,4 +8,12 @@ class District extends Model {
 
 	protected $fillable = ['name'];
 
+    /**
+     * Start relationship
+     */
+
+    public function address() {
+        return $this->hasOne('App\Address');
+    }
+
 }

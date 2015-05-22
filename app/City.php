@@ -8,4 +8,13 @@ class City extends Model {
 
     protected $fillable = ['name'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+
+    public function address() {
+        return $this->hasOne('App\Address');
+    }
+
+
 }

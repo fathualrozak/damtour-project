@@ -10,6 +10,9 @@
                <div class="panel-body">
                {!! Form::open(array('route' => 'program.store')) !!}
                     @include('program._form')
+                    <div class="form-group">
+                        {!! Form::submit('Simpan', ['class' => 'btn btn-primary']) !!}
+                    </div>
                {!! Form::close() !!}
                </div>
 
