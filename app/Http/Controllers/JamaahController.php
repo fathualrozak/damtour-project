@@ -11,6 +11,7 @@ use App\Jamaah;
 use App\Relationship;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Vinkla\Hashids\Facades\Hashids;
 
 class JamaahController extends Controller {
 
@@ -73,8 +74,9 @@ class JamaahController extends Controller {
 	 */
 	public function show($id)
 	{
+        $id = Hashids::decode($id);
+        $jamaah = Jamaah::find($id[0]);
         $properties = getProperties();
-        $jamaah = Jamaah::find($id);
 
         return view('jamaah.show', compact('jamaah', 'properties'));
 	}
@@ -87,7 +89,8 @@ class JamaahController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $jamaah = Jamaah::find($id);
+        $id = Hashids::decode($id);
+        $jamaah = Jamaah::find($id[0]);
 
         $line1 = $jamaah->address->line1;
         $line2 = $jamaah->address->line2;
@@ -129,12 +132,14 @@ class JamaahController extends Controller {
 	 */
 	public function update($id, Request $request)
 	{
-        $jamaah = Jamaah::find($id);
+        $id = Hashids::decode($id);
+        $jamaah = Jamaah::find($id[0]);
+
         $jamaah->fill($request->all())->save();
         $jamaah->heir->fill($request->all())->save();
         $jamaah->address->fill($request->all())->save();
 
-        return redirect(route('jamaah.show', $jamaah->id));
+        return redirect(route('jamaah.show', Hashids::encode($jamaah->id)));
 	}
 
 	/**

@@ -33,3 +33,8 @@ function getProperties() {
 
     return $return;
 }
+
+function hashChars() {
+    $chars = '0123456789abcdef';
+    return $chars;
+}

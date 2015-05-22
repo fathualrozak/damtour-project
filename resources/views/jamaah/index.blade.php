@@ -18,7 +18,7 @@
             </thead>
             <tbody>
         @foreach($jamaah as $jamaah)
-                <tr id="{{ $jamaah->id }}" class="linked-row" route="{{ route('jamaah.show', $jamaah->id) }}">
+                <tr id="{{ $jamaah->id }}" class="linked-row" route="{{ route('jamaah.show', Hashids::encode($jamaah->id)) }}">
                     <td>{{ $jamaah->firstname }} {{ $jamaah->lastname }}</td>
                     <td>{{$properties['genders'][$jamaah->gender] }}</td>
                     <td>{{ $jamaah->contact }}</td>

@@ -10,7 +10,7 @@
                    <ul class="list-inline">
                      <li class="col-xs-12">
                        <span class="btn-group pull-right">
-                         <a href="{{ route('jamaah.edit', $jamaah->id) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit Data</a>
+                         <a href="{{ route('jamaah.edit', Hashids::encode($jamaah->id)) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit Data</a>
                        </span>
                        <h4>{{ $jamaah->firstname.' '.$jamaah->lastname }}</h4>
                      </li>
@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ route('jamaah.index') }}" class="btn btn-primary"> Kembali</a>
+                    <a href="{{ route('jamaah.index') }}" class="btn btn-primary"> Kembali ke list</a>
                 </div>
          </div>
 
