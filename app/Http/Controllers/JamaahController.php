@@ -20,12 +20,17 @@ class JamaahController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-        $jamaah = Jamaah::all();
-        $properties = getProperties();
+        if ($request->ajax()) {
+            $jamaah = Jamaah::all();
+            return $jamaah;
+        } else {
+            $jamaah = Jamaah::all();
+            $properties = getProperties();
 
-		return view('jamaah.index', compact('jamaah', 'properties'));
+            return view('jamaah.index', compact('jamaah', 'properties'));
+        }
 	}
 
 	/**

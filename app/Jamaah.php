@@ -35,4 +35,8 @@ class Jamaah extends Model {
         return $this->hasOne('App\Heir');
     }
 
+    public function booking() {
+        return $this->hasMany('App\Booking');
+    }
+
 }

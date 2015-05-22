@@ -3,6 +3,12 @@ $(document).ready(function() {
         window.location = $(this).attr('route');
     });
 
+    $('.bootstrap-select').on('open', function(){
+        alert(1);
+    });
+
+    console.log($('#jamaah-select-group'));
+
     var panels = $('.user-infos');
     var panelsButton = $('.dropdown-user');
     panels.hide();

@@ -64,4 +64,8 @@ class Program extends Model {
         return $this->belongsTo('App\Package');
     }
 
+    public function booking() {
+        return $this->hasMany('App\Booking');
+    }
+
 }

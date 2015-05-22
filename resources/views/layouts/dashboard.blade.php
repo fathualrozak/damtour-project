@@ -261,7 +261,7 @@
                             <a href="{{ route('jamaah.index') }}"><i class="fa fa-male fa-fw"></i> Jamaah</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
+                            <a href="{{ route('booking.index') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Invoice</a>
