@@ -18,6 +18,7 @@ class SetupBookingsAndNetworksTable extends Migration {
             $table->increments('id');
 
             NestedSet::columns($table);
+            $table->enum('pos', ['lft', 'mid', 'rgt']);
             $table->integer('sponsor_id')->unsigned();
 
             $table->timestamps();

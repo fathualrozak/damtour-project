@@ -33,8 +33,6 @@ class SetupItemsAndRelatedTable extends Migration {
         {
             $table->integer('booking_id')->unsigned();
             $table->integer('item_id')->unsigned();
-
-            $table->timestamps();
         });
 
         Schema::table('additional_item', function(Blueprint $table)

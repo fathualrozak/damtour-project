@@ -15,6 +15,11 @@ class SetupInvoicesAndReferencesTable extends Migration {
         Schema::create('invoices', function(Blueprint $table)
         {
             $table->increments('id');
+
+            $table->date('code');
+            $table->date('date');
+            $table->integer('jamaah_id')->unsigned();
+
             $table->timestamps();
         });
 

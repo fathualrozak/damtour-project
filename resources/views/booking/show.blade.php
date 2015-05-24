@@ -30,9 +30,9 @@
                              </tr>
                               <tr>
                                 <td>Program</td>
-                                <td>{{ $booking->program->name }}</td>
+                                <td><strong>{{ $booking->program->name }}</strong></td>
                               </tr>
-                              @if($booking->program->program_category_id == 1)
+                              @if($booking->program->programCategory->id == 2)
                                <tr>
                                 <td>Jadwal</td>
                                 <td>{{ $booking->program->schedule->format('d-M-Y') }}</td>
@@ -42,14 +42,22 @@
                                 <td>{{ $booking->program->days_length.' Hari' }}</td>
                                </tr>
                               @endif
+                              <tr>
+                                <td>Harga</td>
+                                <td>{{ formatCurrency($booking->program->currency->name, $booking->program->price) }}</td>
+                              </tr>
+                              @if($items->count())
+                                <td>Layanan lain</td>
+                                <td>
+                                    @foreach($items as $item)
+                                          {{ $item->name }} - <i>{{ formatCurrency($item->currency->name,$item->price) }}</i><br>
+                                    @endforeach
+                                </td>
+                              @endif
+                               @if($booking->program->programCategory->id == 2)
                                <tr>
-                                  <td></td>
-                                  <td><h3>{{ formatCurrency($booking->program->currency->name, $booking->program->price) }}</h3></td>
-                               </tr>
-                               @if($booking->program->program_category_id == 1)
-                               <tr>
-                                  <td></td>
-                                  <td><i>{{ 'Batas pelunasan : '.$booking->program->payment_before->format('d-m-Y') }}</i></td>
+                                  <td>Batas Pelunasan</td>
+                                  <td>{{ $booking->program->payment_before->format('d-m-Y') }}</td>
                                </tr>
                                @endif
                             </tbody>

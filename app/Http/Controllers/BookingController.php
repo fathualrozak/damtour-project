@@ -48,7 +48,8 @@ class BookingController extends Controller {
 	{
         $network = [
             'parent_id' => 0,
-            'sponsor_id' => 1
+            'sponsor_id' => 1,
+            'pos' => 'mid'
         ];
 
         $network = Network::create($network);
@@ -78,10 +79,12 @@ class BookingController extends Controller {
 	public function show($code)
 	{
         $booking = Booking::whereCode($code)->first();
+
+        $items = $booking->items;
         $jamaah = $booking->jamaah;
         $properties = getProperties();
 
-		return view('booking.show', compact('booking', 'jamaah', 'properties'));
+		return view('booking.show', compact('booking', 'jamaah', 'properties', 'items'));
 	}
 
 	/**
