@@ -8,4 +8,8 @@ class Currency extends Model {
 
     protected $fillable = ['name', 'description'];
 
+    public function program() {
+        return $this->hasMany('App\Program');
+    }
+
 }

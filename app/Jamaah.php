@@ -1,6 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Hash;
 
 class Jamaah extends Model {
 
@@ -26,6 +27,11 @@ class Jamaah extends Model {
     ];
 
     protected $dates = ['birthdate'];
+
+    protected $casts = [
+        'has_umroh' => 'boolean',
+        'has_hajj'  => 'boolean'
+    ];
 
     public function address() {
         return $this->belongsTo('App\Address');

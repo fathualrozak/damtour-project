@@ -14,11 +14,9 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 	<link rel="stylesheet" href="{{ asset("assets/stylesheets/styles.css") }}" />
-	{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.5/css/bootstrap-select.min.css" />--}}
 </head>
 <body>
 	@yield('body')
 	<script src="{{ asset("assets/scripts/scripts.js") }}" type="text/javascript"></script>
-	{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.5/js/bootstrap-select.min.js" type="text/javascript"></script>--}}
 </body>
 </html>

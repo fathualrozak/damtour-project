@@ -17,15 +17,17 @@ class CreateProgramsTable extends Migration {
             $table->increments('id');
 
             $table->string('name');
-            $table->date('schedule');
-            $table->integer('days_length');
+            $table->date('schedule')->nullable();
+            $table->integer('days_length')->nullable();
             $table->double('price');
-            $table->date('payment_before');
-            $table->text('description');
+            $table->enum('down_payment_type', ['fixed', 'percentage']);
+            $table->double('down_payment');
+            $table->date('payment_before')->nullable();
+            $table->text('description')->nullable();
 
             $table->integer('service_id')->unsigned();
             $table->integer('program_category_id')->unsigned();
-            $table->integer('package_id')->unsigned();
+            $table->integer('package_id')->unsigned()->nullable();
             $table->integer('currency_id')->unsigned();
 
             $table->timestamps();

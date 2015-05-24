@@ -16,6 +16,8 @@ class Program extends Model {
         'schedule',
         'days_length',
         'price',
+        'down_payment_type',
+        'down_payment',
         'payment_before',
         'description',
         'service_id',
@@ -26,24 +28,13 @@ class Program extends Model {
 
     protected $dates = ['schedule', 'payment_before'];
 
-
-    /**
-     * Dates Formatting
-     * @class Program
-     */
-    public function getDates() {
-        return ['schedule', 'payment_before'];
+    public function getDownPaymentAttribute($downpayment) {
+        if ($this->down_payment_type == 'fixed') {
+            return $downpayment;
+        } else {
+            return ($this->price / 100) * $downpayment;
+        }
     }
-
-    public function getScheduleAttribute($date) {
-        $dt = Carbon::createFromFormat('Y-m-d', $date);
-        return $dt->toDateString();
-    }
-    public function getPaymentBeforeAttribute($date) {
-        $dt = Carbon::createFromFormat('Y-m-d', $date);
-        return $dt->toDateString();
-    }
-
 
     /**
      * Relationships
@@ -67,5 +58,11 @@ class Program extends Model {
     public function booking() {
         return $this->hasMany('App\Booking');
     }
+
+    public function currency() {
+        return $this->belongsTo('App\Currency');
+    }
+
+
 
 }

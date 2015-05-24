@@ -4,8 +4,14 @@ use App\Booking;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Item;
 use App\Jamaah;
+use App\Network;
+use Carbon\Carbon;
+use DateTimeZone;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Vinkla\Hashids\Facades\Hashids;
 
 class BookingController extends Controller {
 
@@ -28,7 +34,9 @@ class BookingController extends Controller {
 	 */
 	public function create()
 	{
-		return view('booking.create');
+        $items = Item::all()->lists('name', 'id');
+
+		return view('booking.create', compact('items'));
 	}
 
 	/**
@@ -36,9 +44,29 @@ class BookingController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+        $network = [
+            'parent_id' => 0,
+            'sponsor_id' => 1
+        ];
+
+        $network = Network::create($network);
+
+        $date = Carbon::now(new DateTimeZone('GMT+7'));
+        $booking = [
+            'program_id' => Hashids::decode($request->get('program_id'))[0],
+            'jamaah_id' => Hashids::decode($request->get('jamaah_id'))[0],
+            'date'      => $date,
+            'code'      => Hashids::connection('booking')->encode($date->timestamp),
+            'network_id' => $network->id
+        ];
+
+        $booking = Booking::create($booking);
+
+        $booking->items()->attach($request->input('item_id'));
+
+        return redirect('booking');
 	}
 
 	/**
@@ -47,9 +75,13 @@ class BookingController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($code)
 	{
-		//
+        $booking = Booking::whereCode($code)->first();
+        $jamaah = $booking->jamaah;
+        $properties = getProperties();
+
+		return view('booking.show', compact('booking', 'jamaah', 'properties'));
 	}
 
 	/**

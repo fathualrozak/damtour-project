@@ -9,24 +9,23 @@
         <table class="table table-condensed table-striped table-hover">
             <thead>
                 <tr>
-                    <th>Kode</th>
+                    <th>Kode Booking</th>
                     <th>Jamaah</th>
                     <th>Program</th>
-                    <th>Tanggal</th>
+                    <th>Tanggal Booking</th>
                 </tr>
             </thead>
             <tbody>
         @foreach($bookings as $booking)
                 <tr class="linked-row" route="{{ route('booking.show', $booking->code) }}">
-                    <td>{{ $booking->code }}</td>
+                    <td>{{ chunk_split($booking->code, 4) }}</td>
                     <td>{{ $booking->jamaah->firstname }} {{ $booking->jamaah->lastname }}</td>
                     <td>{{ $booking->program->name }}</td>
-                    <td>{{ $booking->date }}</td>
+                    <td>{{ $booking->date->format('d-m-Y') }}</td>
                 </tr>
         @endforeach
             </tbody>
         </table>
-
     @endsection
 
 @stop

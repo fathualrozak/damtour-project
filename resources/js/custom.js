@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
 $('.linked-row').click(function(){
     window.location = $(this).attr('route');
 });
@@ -5,8 +11,6 @@ $('.linked-row').click(function(){
 $('.bootstrap-select').on('open', function(){
     alert(1);
 });
-
-console.log($('#jamaah-select-group'));
 
 var panels = $('.user-infos');
 var panelsButton = $('.dropdown-user');
@@ -41,46 +45,103 @@ $('button').click(function(e) {
     alert("This is a demo.\n :-)");
 });
 
-$('.select-picker')
-.selectpicker({
-    liveSearch: true
-})
-.ajaxSelectPicker({
+function formatJamaah (jamaah) {
+    if (jamaah.loading) return jamaah.text;
+    var markup = '<div class="clearfix">' +
+        '<div clas="col-sm-10">' +
+        '<div class="clearfix">' +
+        '<div class="col-sm-6">' + jamaah.firstname + ' ' + jamaah.lastname + '</div>' +
+        '<div class="col-sm-6"><i class="fa fa-credit-card"></i> ' + jamaah.idcard_number + '</div>' +
+        '</div>';
+
+    markup += '</div></div>';
+
+    return markup;
+}
+
+function formatJamaahSelection (jamaah) {
+    return jamaah.firstname + ' ' + jamaah.lastname + ' - ' + jamaah.idcard_number;
+}
+
+$(".jamaah-selector").select2({
     ajax: {
-        url: '/jamaah',
-        data: function () {
-            var params = {
-                q: '{{{q}}}'
+        url: "http://admin.damtour.co.id/jamaah",
+        dataType: 'json',
+        delay: 100,
+        data: function (params) {
+            return {
+                q: params.term,
+                page: params.page
             };
-            if(gModel.selectedGroup().hasOwnProperty('ContactGroupID')){
-                params.GroupID = gModel.selectedGroup().ContactGroupID;
-            }
-            return params;
-        }
+        },
+        processResults: function (data, params) {
+            params.page = params.page || 1;
+
+            return {
+                results: data,
+                pagination: {
+                    more: (params.page * 30) < data.length
+                }
+            };
+        },
+        cache: true
     },
-    locale: {
-        emptyTitle: 'Search for contact...'
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 2,
+    templateResult: formatJamaah,
+    templateSelection: formatJamaahSelection
+});
+
+function formatProgram (program) {
+    if (program.loading) return program.text;
+    var markup = '<div class="clearfix">' +
+        '<div clas="col-sm-10">' +
+        '<div class="clearfix">' +
+        '<div class="col-sm-12"><h4>' + program.service + ' ' + program.category + '</h4></div>' +
+        '<div class="col-sm-6">' + program.name + '</div>' +
+        '<div class="col-sm-6"><i>' + program.price + '</i></div>' +
+        '<div class="col-sm-6">' + program.package + '</div>' +
+        '<div class="col-sm-6"><i>' + program.schedule + ' (' + program.days_length + ')</i></div>' +
+        '</div>';
+
+    markup += '</div></div>';
+
+    return markup;
+}
+
+function formatProgramSelection (program) {
+    return program.service + ' ' + program.name + ' - ' + program.price;
+}
+
+$(".program-selector").select2({
+    ajax: {
+        url: "http://admin.damtour.co.id/program",
+        dataType: 'json',
+        delay: 100,
+        data: function (params) {
+            return {
+                q: params.term,
+                page: params.page
+            };
+        },
+        processResults: function (data, params) {
+            params.page = params.page || 1;
+
+            return {
+                results: data,
+                pagination: {
+                    more: (params.page * 30) < data.length
+                }
+            };
+        },
+        cache: true
     },
-    preprocessData: function(data){
-        var contacts = [];
-        if(data.hasOwnProperty('Contacts')){
-            var len = data.Contacts.length;
-            for(var i = 0; i < len; i++){
-                var curr = data.Contacts[i];
-                contacts.push(
-                    {
-                        'value': curr.ContactID,
-                        'text': curr.FirstName + ' ' + curr.LastName,
-                        'data': {
-                            'icon': 'icon-person',
-                            'subtext': 'Internal'
-                        },
-                        'disable': false
-                    }
-                );
-            }
-        }
-        return contacts;
-    },
-    preserveSelected: false
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 2,
+    templateResult: formatProgram,
+    templateSelection: formatProgramSelection
+});
+
+$(".items-selector").select2({
+    placeholder: "Pilih layanan lain"
 });

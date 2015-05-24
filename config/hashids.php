@@ -43,10 +43,10 @@ return [
             'alphabet' => '0123456789abcdef'
         ],
 
-        'alternative' => [
-            'salt' => 'your-salt-string',
-            'length' => 'your-length-integer',
-            'alphabet' => 'your-alphabet-string'
+        'booking' => [
+            'salt' => env('APP_KEY'),
+            'length' => 12,
+            'alphabet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
         ],
 
     ],

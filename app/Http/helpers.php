@@ -28,13 +28,18 @@ function getProperties() {
             'x' => 'X',
             'xl' => 'XL',
             'xxl' => 'XXL'
+        ],
+        'down_payment_types' => [
+            'fixed' => 'Nominal',
+            'percentage' => 'Persentasi'
         ]
     ];
 
     return $return;
 }
 
-function hashChars() {
-    $chars = '0123456789abcdef';
-    return $chars;
+function formatCurrency($currency, $nominal) {
+    $result = $currency.' '.number_format($nominal,0,',','.');
+    return $result;
 }
+

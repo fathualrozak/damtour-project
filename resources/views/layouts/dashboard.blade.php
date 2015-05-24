@@ -261,10 +261,10 @@
                             <a href="{{ route('jamaah.index') }}"><i class="fa fa-male fa-fw"></i> Jamaah</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ route('booking.index') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
+                            <a href="{{ route('booking.index') }}"><i class="fa fa-tasks fa-fw"></i> Booking</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Invoice</a>
+                            <a href="{{ url ('#') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Payment</a>
@@ -293,9 +293,10 @@
                 </div>
                 <!-- /.col-lg-12 -->
            </div>
-			<div class="row">  
-				@yield('section')
-
+			<div class="row">
+			    <div class="wrapper">
+				    @yield('section')
+				</div>
             </div>
             <!-- /#page-wrapper -->
         </div>

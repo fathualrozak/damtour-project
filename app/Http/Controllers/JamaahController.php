@@ -20,17 +20,12 @@ class JamaahController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index(Request $request)
+	public function index()
 	{
-        if ($request->ajax()) {
-            $jamaah = Jamaah::all();
-            return $jamaah;
-        } else {
-            $jamaah = Jamaah::all();
-            $properties = getProperties();
+        $jamaah = Jamaah::all();
+        $properties = getProperties();
 
-            return view('jamaah.index', compact('jamaah', 'properties'));
-        }
+        return view('jamaah.index', compact('jamaah', 'properties'));
 	}
 
 	/**
@@ -55,19 +50,37 @@ class JamaahController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $request = $request->all();
+        if ($request->ajax()) {
+            $q = $request->get('q');
+            $jamaahs = Jamaah::where('firstname', 'LIKE', '%'.$q.'%')->get();
 
-        $address = Address::create($request);
-        $address_id = ['address_id' => $address->id];
-        $request = array_merge($request, $address_id);
+            $new = $jamaahs->map(function($jamaah)
+            {
+                $results = [
+                    'id' => Hashids::encode($jamaah->id),
+                    'firstname' => $jamaah->firstname,
+                    'lastname' => $jamaah->lastname,
+                    'idcard_number' => $jamaah->idcard_number
+                ];
+                return $results;
+            });
 
-        $jamaah = Jamaah::create($request);
-        $jamaah_id = ['jamaah_id' => $jamaah->id];
-        $request = array_merge($request, $jamaah_id);
+            return $new;
+        } else {
+            $request = $request->all();
 
-        Heir::create($request);
+            $address = Address::create($request);
+            $address_id = ['address_id' => $address->id];
+            $request = array_merge($request, $address_id);
 
-        return redirect('jamaah');
+            $jamaah = Jamaah::create($request);
+            $jamaah_id = ['jamaah_id' => $jamaah->id];
+            $request = array_merge($request, $jamaah_id);
+
+            Heir::create($request);
+
+            return redirect('jamaah');
+        }
 
 	}
 

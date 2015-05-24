@@ -13,16 +13,17 @@
 
 Route::get('/', 'DashboardController@index');
 
-Route::get('dashboard', 'DashboardController@tryajax');
-
-Route::post('dashboard', 'DashboardController@tryajax');
+Route::get('dashboard', 'DashboardController@iindex');
 
 Route::resource('program', 'ProgramController');
 
 Route::resource('jamaah', 'JamaahController',
                 ['except' => ['destroy']]);
 
-Route::resource('booking', 'BookingController');
+Route::resource('booking', 'BookingController',
+                ['except' => ['edit', 'update', 'destroy']]);
+
+Route::resource('invoice', 'InvoiceController');
 
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',

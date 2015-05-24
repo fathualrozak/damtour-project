@@ -1,7 +1,7 @@
 <?php namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Kalnoy\Nestedset\Node
+use Kalnoy\Nestedset\Node;
 
 class Network extends Node {
 

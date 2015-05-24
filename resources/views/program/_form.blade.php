@@ -27,6 +27,14 @@
     {!! Form::input('number', 'price', null, array('class' => 'form-control')) !!}
 </div>
 <div class="form-group">
+    {!! Form::label('down_payment_type', 'Tipe DP') !!}
+    {!! Form::select('down_payment_type', $properties['down_payment_types'], null, array('class' => 'form-control')) !!}
+</div>
+<div class="form-group">
+    {!! Form::label('down_payment', 'Jumlah DP') !!}
+    {!! Form::input('number', 'down_payment', null, array('class' => 'form-control')) !!}
+</div>
+<div class="form-group">
     {!! Form::label('currency_id', 'Mata Uang') !!}
     {!! Form::select('currency_id', $currencies, null, array('class' => 'form-control')) !!}
 </div>

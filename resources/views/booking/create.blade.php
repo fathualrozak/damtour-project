@@ -1,6 +1,5 @@
 @extends('layouts.dashboard')
 @section('section')
-
        <div class="col-lg-8 col-lg-offset-2">
            <div class="panel panel-primary">
 
@@ -17,17 +16,32 @@
                </div>
                <div class="panel-body">
                <div class="col-md-10 col-md-offset-1">
-                   {!! Form::open(array('route' => 'program.store')) !!}
-                       <div id="jamaah-select-group" class="form-group">
-                           {!! Form::select('booking', getProperties()['educations'], null, [
-                                'id' => 'jamaah-select',
-                                'class' => 'selectpicker',
-                                'data-live-search' => 'true',
-                                'data-size' => '5'
+                   {!! Form::open(array('route' => 'booking.store')) !!}
+                       <div class="form-group">
+                           {!! Form::label('jamaah_id', 'Jamaah') !!}
+                           {!! Form::select('jamaah_id', [], null, [
+                                'class' => 'form-control jamaah-selector',
+                                'style' => 'width: 100%'
                            ]) !!}
                        </div>
                        <div class="form-group">
-                           {!! Form::submit('Booking', ['class' => 'btn btn-primary']) !!}
+                           {!! Form::label('program_id', 'Program') !!}
+                           {!! Form::select('program_id', [], null, [
+                                'class' => 'form-control program-selector',
+                                'style' => 'width: 100%'
+                           ]) !!}
+                       </div>
+                       <div class="form-group">
+                           {!! Form::label('item_id', 'Layanan lain') !!}
+                           {!! Form::select('item_id[]', $items, null, [
+                                'class' => 'form-control items-selector',
+                                'multiple',
+                                'style' => 'width: 100%'
+                           ]) !!}
+                       </div>
+
+                       <div class="form-group">
+                           {!! Form::submit('Booking', ['class' => 'btn btn-success pull-right']) !!}
                        </div>
                    {!! Form::close() !!}
                </div>

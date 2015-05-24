@@ -97,7 +97,7 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <a href="{{ route('jamaah.index') }}" class="btn btn-primary"> Kembali ke list</a>
+                    <a href="{{ route('jamaah.index') }}" class="btn btn-primary"> List Jamaah</a>
                 </div>
          </div>
 
