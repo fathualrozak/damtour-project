@@ -46,14 +46,6 @@
                                 <td>Harga</td>
                                 <td>{{ formatCurrency($booking->program->currency->name, $booking->program->price) }}</td>
                               </tr>
-                              @if($items->count())
-                                <td>Layanan lain</td>
-                                <td>
-                                    @foreach($items as $item)
-                                          {{ $item->name }} - <i>{{ formatCurrency($item->currency->name,$item->price) }}</i><br>
-                                    @endforeach
-                                </td>
-                              @endif
                                @if($booking->program->programCategory->id == 2)
                                <tr>
                                   <td>Batas Pelunasan</td>

@@ -4,8 +4,8 @@ use App\Booking;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Item;
-use App\Jamaah;
+use App\Invoice;
+use App\InvoiceLine;
 use App\Network;
 use Carbon\Carbon;
 use DateTimeZone;
@@ -34,9 +34,7 @@ class BookingController extends Controller {
 	 */
 	public function create()
 	{
-        $items = Item::all()->lists('name', 'id');
-
-		return view('booking.create', compact('items'));
+		return view('booking.create');
 	}
 
 	/**
@@ -65,7 +63,22 @@ class BookingController extends Controller {
 
         $booking = Booking::create($booking);
 
-        $booking->items()->attach($request->input('item_id'));
+        $invoice = Invoice::create([
+            'date' => $date,
+            'code' => Hashids::connection('invoice')->encode($date->timestamp),
+            'jamaah_id' => $booking->jamaah_id
+        ]);
+
+        InvoiceLine::create([
+            'type' => 1,
+            'booking_id' => $booking->id,
+            'invoice_id' => $invoice->id,
+        ]);
+        InvoiceLine::create([
+            'type' => 2,
+            'booking_id' => $booking->id,
+            'invoice_id' => $invoice->id,
+        ]);
 
         return redirect('booking');
 	}
@@ -80,11 +93,10 @@ class BookingController extends Controller {
 	{
         $booking = Booking::whereCode($code)->first();
 
-        $items = $booking->items;
         $jamaah = $booking->jamaah;
         $properties = getProperties();
 
-		return view('booking.show', compact('booking', 'jamaah', 'properties', 'items'));
+		return view('booking.show', compact('booking', 'jamaah', 'properties'));
 	}
 
 	/**

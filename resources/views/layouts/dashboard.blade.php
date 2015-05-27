@@ -264,7 +264,7 @@
                             <a href="{{ route('booking.index') }}"><i class="fa fa-tasks fa-fw"></i> Booking</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
+                            <a href="{{ route('invoice.index') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Payment</a>

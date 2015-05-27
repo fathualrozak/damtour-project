@@ -49,6 +49,12 @@ return [
             'alphabet' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890'
         ],
 
+        'invoice' => [
+            'salt' => env('APP_KEY'),
+            'length' => 16,
+            'alphabet' => '0123456789ABCDEF'
+        ],
+
     ],
 
 ];

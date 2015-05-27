@@ -24,8 +24,4 @@ class Booking extends Model {
         return $this->belongsTo('App\Program');
     }
 
-    public function items() {
-        return $this->belongsToMany('App\Item', 'additional_item');
-    }
-
 }

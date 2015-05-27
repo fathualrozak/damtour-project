@@ -23,8 +23,6 @@ Route::resource('jamaah', 'JamaahController',
 Route::resource('booking', 'BookingController',
                 ['except' => ['edit', 'update', 'destroy']]);
 
-Route::resource('invoice', 'InvoiceController');
-
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',

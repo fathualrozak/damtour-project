@@ -31,14 +31,6 @@
                                 'style' => 'width: 100%'
                            ]) !!}
                        </div>
-                       <div class="form-group">
-                           {!! Form::label('item_id', 'Layanan lain') !!}
-                           {!! Form::select('item_id[]', $items, null, [
-                                'class' => 'form-control items-selector',
-                                'multiple',
-                                'style' => 'width: 100%'
-                           ]) !!}
-                       </div>
 
                        <div class="form-group">
                            {!! Form::submit('Booking', ['class' => 'btn btn-success pull-right']) !!}
