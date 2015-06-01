@@ -17,21 +17,9 @@ class NetworkController extends Controller {
 	public function index(Request $request)
 	{
         if($request->ajax()) {
-            $q = $request->get('q');
-            $jamaahs = Jamaah::where('firstname', 'LIKE', '%'.$q.'%')->get();
+            $networks = Network::all(['id', 'pos']);
 
-            $new = $jamaahs->map(function($jamaah)
-            {
-                $results = [
-                    'id' => Hashids::encode($jamaah->id),
-                    'firstname' => $jamaah->firstname,
-                    'lastname' => $jamaah->lastname,
-                    'idcard_number' => $jamaah->idcard_number
-                ];
-                return $results;
-            });
-
-            return $new;
+            return $networks;
         } else {
             $networks = Network::get()->toTree();
             return $networks;
