@@ -34,7 +34,8 @@ class BookingController extends Controller {
 	 */
 	public function create()
 	{
-		return view('booking.create');
+        $properties = getProperties();
+		return view('booking.create', compact('properties'));
 	}
 
 	/**
@@ -45,12 +46,12 @@ class BookingController extends Controller {
 	public function store(Request $request)
 	{
         $network = [
-            'parent_id' => 0,
+            'parent_id' => 1,
             'sponsor_id' => 1,
             'pos' => 'mid'
         ];
 
-        $network = Network::create($network);
+        $network = Network::create($network, $parent);
 
         $date = Carbon::now(new DateTimeZone('GMT+7'));
         $booking = [
@@ -63,21 +64,19 @@ class BookingController extends Controller {
 
         $booking = Booking::create($booking);
 
-        $invoice = Invoice::create([
-            'date' => $date,
-            'code' => Hashids::connection('invoice')->encode($date->timestamp),
+        Invoice::create([
+            'code' => Hashids::connection('invoice')->encode(Carbon::now()->timestamp+1),
+            'date' => Carbon::now(new DateTimeZone('GMT+7')),
+            'invoice_type_id' => 1,
+            'booking_id' => $booking->id,
             'jamaah_id' => $booking->jamaah_id
         ]);
-
-        InvoiceLine::create([
-            'type' => 1,
+        Invoice::create([
+            'code' => Hashids::connection('invoice')->encode(Carbon::now()->timestamp+2),
+            'date' => Carbon::now(new DateTimeZone('GMT+7')),
+            'invoice_type_id' => 2,
             'booking_id' => $booking->id,
-            'invoice_id' => $invoice->id,
-        ]);
-        InvoiceLine::create([
-            'type' => 2,
-            'booking_id' => $booking->id,
-            'invoice_id' => $invoice->id,
+            'jamaah_id' => $booking->jamaah_id
         ]);
 
         return redirect('booking');

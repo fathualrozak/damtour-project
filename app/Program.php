@@ -36,6 +36,10 @@ class Program extends Model {
         }
     }
 
+    public function getPelunasanAttribute() {
+        return $this->price - $this->down_payment;
+    }
+
     /**
      * Relationships
      * @class Program

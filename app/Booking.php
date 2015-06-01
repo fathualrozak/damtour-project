@@ -24,4 +24,8 @@ class Booking extends Model {
         return $this->belongsTo('App\Program');
     }
 
+    public function invoice() {
+        return $this->hasMany('App\Invoice');
+    }
+
 }

@@ -23,6 +23,14 @@ Route::resource('jamaah', 'JamaahController',
 Route::resource('booking', 'BookingController',
                 ['except' => ['edit', 'update', 'destroy']]);
 
+Route::resource('invoice', 'InvoiceController',
+                ['only' => ['index', 'show']]);
+
+Route::get('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+Route::post('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+
+
+
 //Route::controllers([
 //	'auth' => 'Auth\AuthController',
 //	'password' => 'Auth\PasswordController',

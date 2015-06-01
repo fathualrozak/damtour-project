@@ -270,7 +270,7 @@
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Payment</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Jaringan</a>
+                            <a href="{{ route('network.index') }}"><i class="fa fa-sitemap fa-fw"></i> Jaringan</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Bonus</a>

@@ -22287,7 +22287,50 @@ $(".program-selector").select2({
     templateSelection: formatProgramSelection
 });
 
-$(".items-selector").select2({
-    placeholder: "Pilih layanan lain"
+function formatParent (parent) {
+    if (parent.loading) return parent.text;
+    var markup = '<div class="clearfix">' +
+        '<div clas="col-sm-10">' +
+        '<div class="clearfix">' +
+        '<div class="col-sm-12"><h4>' + parent.id + '</h4></div>' +
+        '</div>';
+    markup += '</div>';
+
+    return markup;
+}
+
+function formatParentSelection (parent) {
+    return parent.id;
+}
+
+$(".parent-selector").select2({
+    ajax: {
+        url: "http://admin.damtour.co.id/network",
+        dataType: 'json',
+        delay: 100,
+        data: function (params) {
+            return {
+                q: params.term,
+                page: params.page
+            };
+        },
+        processResults: function (data, params) {
+            params.page = params.page || 1;
+
+            return {
+                results: data,
+                pagination: {
+                    more: (params.page * 30) < data.length
+                }
+            };
+        },
+        cache: true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 2,
+    templateResult: formatParent,
+    templateSelection: formatParentSelection
 });
+
+
 //# sourceMappingURL=scripts.js.map

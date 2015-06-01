@@ -32,6 +32,11 @@ function getProperties() {
         'down_payment_types' => [
             'fixed' => 'Nominal',
             'percentage' => 'Persentasi'
+        ],
+        'pos' => [
+            'lft' => 'Kiri',
+            'mid' => 'Tengah',
+            'rgt' => 'Kanan'
         ]
     ];
 
