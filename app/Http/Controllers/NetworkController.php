@@ -17,12 +17,12 @@ class NetworkController extends Controller {
 	public function index(Request $request)
 	{
         if($request->ajax()) {
-            $networks = Network::all(['id', 'pos']);
+            $networks = Network::all()->toTree();
 
             return $networks;
         } else {
             $networks = Network::get()->toTree();
-            return $networks;
+            return view('network.index', compact('networks'));
         }
 	}
 

@@ -8,7 +8,7 @@ class Network extends Node {
 	protected $table = 'networks';
 
     protected $fillable = [
-        'upline_id', 'sponsor_id', 'pos'
+        'parent_id', 'sponsor_id', 'pos'
     ];
 
     public function book() {

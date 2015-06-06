@@ -45,13 +45,7 @@ class BookingController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $network = [
-            'parent_id' => 1,
-            'sponsor_id' => 1,
-            'pos' => 'mid'
-        ];
-
-        $network = Network::create($network, $parent);
+        $network = Network::create($request->all());
 
         $date = Carbon::now(new DateTimeZone('GMT+7'));
         $booking = [

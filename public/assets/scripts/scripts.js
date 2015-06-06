@@ -22303,7 +22303,7 @@ function formatParentSelection (parent) {
     return parent.id;
 }
 
-$(".parent-selector").select2({
+$(".parent-selector, .sponsor-selector").select2({
     ajax: {
         url: "http://admin.damtour.co.id/network",
         dataType: 'json',
@@ -22327,10 +22327,33 @@ $(".parent-selector").select2({
         cache: true
     },
     escapeMarkup: function (markup) { return markup; },
-    minimumInputLength: 2,
+    minimumInputLength: 1,
     templateResult: formatParent,
     templateSelection: formatParentSelection
 });
+
+$(".tree a").click(function() {
+    var route = $('.tree').attr('route');
+
+    $.post(route, function(data) {
+        tree = getList(data);
+        $(".tree").html(tree);
+    });
+});
+
+function getList(data) {
+    var list = "<ul>";
+    $.each(data, function(index, value) {
+        list += "<li><a href='#'>" + value.id + "</a>";
+        child = value.children;
+        if (child.length) {
+            list += getList(child);
+        }
+        list += "</li>";
+    });
+    list += "</ul>" ;
+    return list;
+}
 
 
 //# sourceMappingURL=scripts.js.map
