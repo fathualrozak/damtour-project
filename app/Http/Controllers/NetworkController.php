@@ -22,6 +22,7 @@ class NetworkController extends Controller {
             return $networks;
         } else {
             $networks = Network::get()->toTree();
+//            return Network::withDepth()->get()->toTree();
             return view('network.index', compact('networks'));
         }
 	}

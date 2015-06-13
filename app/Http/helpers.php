@@ -1,4 +1,5 @@
 <?php
+use App\Network;
 
 function getProperties() {
     $return = [

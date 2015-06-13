@@ -196,6 +196,15 @@ $(".tree a").click(function() {
     });
 });
 
+if ($(".tree").length) {
+    var route = $('.tree').attr('route');
+
+    $.post(route, function(data) {
+        tree = getList(data);
+        $(".tree").html(tree);
+    });
+}
+
 function getList(data) {
     var list = "<ul>";
     $.each(data, function(index, value) {
