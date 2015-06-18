@@ -17,12 +17,24 @@ class NetworkController extends Controller {
 	public function index(Request $request)
 	{
         if($request->ajax()) {
-            $networks = Network::all()->toTree();
 
-            return $networks;
+
+            $networks = Network::all();
+
+            $networks = $networks->map(function ($network) {
+                $name = $network->book ? $network->fullName : "System";
+                $network->name = $name;
+
+                return $network;
+            });
+            if ($request->input('list')) {
+                return $networks;
+            } else {
+                return $networks->toTree();
+            }
+
         } else {
-            $networks = Network::get()->toTree();
-//            return Network::withDepth()->get()->toTree();
+            $networks = Network::all();
             return view('network.index', compact('networks'));
         }
 	}

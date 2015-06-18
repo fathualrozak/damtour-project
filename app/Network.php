@@ -11,8 +11,11 @@ class Network extends Node {
         'parent_id', 'sponsor_id', 'pos'
     ];
 
+    public function getFullNameAttribute() {
+        return $this->book->jamaah->firstname." ". $this->book->jamaah->lastname;
+    }
     public function book() {
-        return $this->hasOne('App\Book');
+        return $this->hasOne('App\Booking');
     }
 
 }

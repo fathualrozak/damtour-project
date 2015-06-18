@@ -26,12 +26,14 @@ elixir(function(mix) {
     ], 'public/assets/stylesheets/styles.css', './');
     mix.scripts([
         'bower_components/jquery/dist/jquery.js',
+        'bower_components/d3/d3.js',
         'bower_components/bootstrap/dist/js/bootstrap.js',
         'bower_components/Chart.js/Chart.js',
         'bower_components/metisMenu/dist/metisMenu.js',
         'resources/js/sb-admin-2.js',
         'resources/js/select2.js',
-        'resources/js/bootstrap-select.js',
-        'resources/js/custom.js'
+        'resources/js/bootstrap-select.js'
+        //'resources/js/custom.js',
+        //'resources/js/dndTree.js'
     ], 'public/assets/scripts/scripts.js', './');
 });
