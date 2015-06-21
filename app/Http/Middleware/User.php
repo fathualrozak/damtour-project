@@ -2,7 +2,7 @@
 
 use Closure;
 
-class Admin {
+class User {
 
 	/**
 	 * Handle an incoming request.

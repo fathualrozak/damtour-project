@@ -32,4 +32,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 */
 	protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * The One-To-Many relation between User/Admin and Payment
+     *
+     * @return Collection
+     */
+    public function payment() {
+        return $this->hasMany('App\Payment');
+    }
+
 }

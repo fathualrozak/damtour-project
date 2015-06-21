@@ -20,4 +20,7 @@ class Invoice extends Model {
         return $this->belongsTo('App\Jamaah');
     }
 
+    public function payment() {
+        return $this->hasMany('App\Payment');
+    }
 }

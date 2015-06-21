@@ -213,7 +213,7 @@
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i> {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
                         <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -221,7 +221,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="{{ url ('login') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="{{ url ('auth/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -248,7 +248,7 @@
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-bar-chart-o fa-fw"></i> Admin</a>
+                            <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> User</a>
                             <!-- /.nav-second-level -->
                         </li>
                         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
@@ -267,7 +267,7 @@
                             <a href="{{ route('invoice.index') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Payment</a>
+                            <a href="{{ route('payment.index') }}"><i class="fa fa-money fa-fw"></i> Payment</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ route('network.index') }}"><i class="fa fa-sitemap fa-fw"></i> Jaringan</a>
@@ -294,7 +294,7 @@
                 <!-- /.col-lg-12 -->
            </div>
 			<div class="row">
-			    <div class="wrapper">
+			    <div class="container-fluid">
 				    @yield('section')
 				</div>
             </div>

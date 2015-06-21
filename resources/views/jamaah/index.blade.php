@@ -6,7 +6,7 @@
             <a href="{{ route('jamaah.create') }}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Registrasi</a>
         </div>
         <hr>
-        <table class="table table-condensed table-striped table-hover">
+        <table class="table table-condensed table-striped table-hover table-responsive">
             <thead>
                 <tr>
                     <th>Nama</th>

@@ -11,27 +11,30 @@
 |
 */
 
-Route::get('/', 'DashboardController@index');
+Route::controllers([
+    'auth' => 'Auth\AuthController',
+    'password' => 'Auth\PasswordController',
+]);
 
-Route::get('dashboard', 'DashboardController@iindex');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/', 'DashboardController@index');
 
-Route::resource('program', 'ProgramController');
+    Route::get('dashboard', 'DashboardController@index');
 
-Route::resource('jamaah', 'JamaahController',
-                ['except' => ['destroy']]);
+    Route::resource('program', 'ProgramController');
 
-Route::resource('booking', 'BookingController',
-                ['except' => ['edit', 'update', 'destroy']]);
+    Route::resource('user', 'UserController');
 
-Route::resource('invoice', 'InvoiceController',
-                ['only' => ['index', 'show']]);
+    Route::resource('jamaah', 'JamaahController', ['except' => ['destroy']]);
 
-Route::get('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
-Route::post('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+    Route::resource('booking', 'BookingController', ['except' => ['edit', 'update', 'destroy']]);
+
+    Route::resource('invoice', 'InvoiceController', ['only' => ['index', 'show']]);
+    Route::resource('payment', 'PaymentController');
+
+    Route::get('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+    Route::post('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+});
 
 
 
-//Route::controllers([
-//	'auth' => 'Auth\AuthController',
-//	'password' => 'Auth\PasswordController',
-//]);

@@ -12,4 +12,8 @@ class Currency extends Model {
         return $this->hasMany('App\Program');
     }
 
+    public function payment() {
+        return $this->hasMany('App\Payment');
+    }
+
 }
