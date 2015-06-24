@@ -19,9 +19,11 @@
                <div class="col-md-10 col-md-offset-1">
                    {!! Form::open(array('route' => 'payment.store')) !!}
                         @include('payment._form')
-                   <div class="form-group">
-                       {!! Form::submit('Simpan', ['class' => 'btn btn-primary']) !!}
-                   </div>
+                       <div class="col-md-12">
+                            <div class="form-group">
+                                {!! Form::submit('Bayar', ['class' => 'btn btn-primary']) !!}
+                            </div>
+                       </div>
                    {!! Form::close() !!}
                </div>
                </div>

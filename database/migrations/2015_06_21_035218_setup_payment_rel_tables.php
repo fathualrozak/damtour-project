@@ -31,15 +31,6 @@ class SetupPaymentRelTables extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('payment_status', function(Blueprint $table){
-            $table->increments('id');
-
-            $table->string('code');
-            $table->string('name');
-
-            $table->timestamps();
-        });
-
         Schema::create('payments', function(Blueprint $table){
             $table->increments('id');
 
@@ -50,7 +41,6 @@ class SetupPaymentRelTables extends Migration {
             $table->integer('payer_id')->unsigned();
             $table->integer('currency_id')->unsigned();
             $table->integer('payment_method_id')->unsigned();
-            $table->integer('payment_status_id')->unsigned();
             $table->integer('user_id')->unsigned();
 
             $table->timestamps();
@@ -62,7 +52,6 @@ class SetupPaymentRelTables extends Migration {
             $table->foreign('payer_id')->references('id')->on('payers')->onDelete('cascade');
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('cascade');
             $table->foreign('payment_method_id')->references('id')->on('payment_methods')->onDelete('cascade');
-            $table->foreign('payment_status_id')->references('id')->on('payment_status')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
 	}
@@ -75,7 +64,6 @@ class SetupPaymentRelTables extends Migration {
 	public function down()
 	{
         Schema::drop('payments');
-        Schema::drop('payment_status');
         Schema::drop('payment_methods');
         Schema::drop('payers');
 	}

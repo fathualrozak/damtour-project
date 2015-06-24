@@ -1,10 +1,15 @@
 <?php namespace App\Http\Controllers;
 
+use App\Currency;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
+use App\Payer;
 use App\Payment;
+use App\PaymentMethod;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class PaymentController extends Controller {
 
@@ -27,7 +32,10 @@ class PaymentController extends Controller {
 	 */
 	public function create()
 	{
-		return view('payment.create');
+        $currencies = Currency::all()->lists('name', 'id');
+        $paymentMethod = PaymentMethod::all()->lists('name', 'id');
+
+		return view('payment.create', compact('currencies', 'paymentMethod'));
 	}
 
 	/**
@@ -35,9 +43,22 @@ class PaymentController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(Request $request)
 	{
-		//
+        $payer = Payer::findOrNew(['name' => $request->payer_name, 'contact' => $request->payer_contact]);
+
+        Payment::create([
+            'date' => $request->input('date'),
+            'amount' => $request->input('amount'),
+            'invoice_id' => $request->input('invoice_id'),
+            'payer_id' => $payer->id,
+            'currency_id' => $request->input('currency_id'),
+            'payment_method_id' => $request->input('payment_method_id'),
+            'user_id' => Auth::user()->id
+        ]);
+
+        return redirect('/payment');
+
 	}
 
 	/**

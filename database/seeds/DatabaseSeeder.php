@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder {
         $this->call('NetworkTableSeeder');
         $this->call('RoleTableSeeder');
         $this->call('UserTableSeeder');
+        $this->call('PaymentMethodTableSeeder');
     }
 
 }

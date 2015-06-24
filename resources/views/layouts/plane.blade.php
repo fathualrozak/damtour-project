@@ -18,6 +18,7 @@
 <body>
 	@yield('body')
 	<script src="{{ asset("assets/scripts/scripts.js") }}" type="text/javascript"></script>
+	<script src="{{ asset("assets/scripts/typeahead.js") }}" type="text/javascript"></script>
 	<script src="{{ asset("assets/scripts/custom.js") }}" type="text/javascript"></script>
 	<script src="{{ asset("assets/scripts/dndTree.js") }}" type="text/javascript"></script>
 </body>

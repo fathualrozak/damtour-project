@@ -45,24 +45,11 @@ $('button').click(function(e) {
     alert("This is a demo.\n :-)");
 });
 
-function formatJamaah (jamaah) {
-    if (jamaah.loading) return jamaah.text;
-    var markup = '<div class="clearfix">' +
-        '<div clas="col-sm-10">' +
-        '<div class="clearfix">' +
-        '<div class="col-sm-6">' + jamaah.firstname + ' ' + jamaah.lastname + '</div>' +
-        '<div class="col-sm-6"><i class="fa fa-credit-card"></i> ' + jamaah.idcard_number + '</div>' +
-        '</div>';
 
-    markup += '</div></div>';
-
-    return markup;
-}
-
-function formatJamaahSelection (jamaah) {
-    return jamaah.firstname + ' ' + jamaah.lastname + ' - ' + jamaah.idcard_number;
-}
-
+/*
+ * Jamaah Selector
+ * ==========================
+ * */
 $(".jamaah-selector").select2({
     ajax: {
         url: "http://admin.damtour.co.id/jamaah",
@@ -92,16 +79,13 @@ $(".jamaah-selector").select2({
     templateSelection: formatJamaahSelection
 });
 
-function formatProgram (program) {
-    if (program.loading) return program.text;
+function formatJamaah (jamaah) {
+    if (jamaah.loading) return jamaah.text;
     var markup = '<div class="clearfix">' +
         '<div clas="col-sm-10">' +
         '<div class="clearfix">' +
-        '<div class="col-sm-12"><h4>' + program.service + ' ' + program.category + '</h4></div>' +
-        '<div class="col-sm-6">' + program.name + '</div>' +
-        '<div class="col-sm-6"><i>' + program.price + '</i></div>' +
-        '<div class="col-sm-6">' + program.package + '</div>' +
-        '<div class="col-sm-6"><i>' + program.schedule + ' (' + program.days_length + ')</i></div>' +
+        '<div class="col-sm-6">' + jamaah.firstname + ' ' + jamaah.lastname + '</div>' +
+        '<div class="col-sm-6"><i class="fa fa-credit-card"></i> ' + jamaah.idcard_number + '</div>' +
         '</div>';
 
     markup += '</div></div>';
@@ -109,10 +93,14 @@ function formatProgram (program) {
     return markup;
 }
 
-function formatProgramSelection (program) {
-    return program.service + ' ' + program.name + ' - ' + program.price;
+function formatJamaahSelection (jamaah) {
+    return jamaah.firstname + ' ' + jamaah.lastname + ' - ' + jamaah.idcard_number;
 }
 
+/*
+ * Program Selector
+ * ==========================
+ * */
 $(".program-selector").select2({
     ajax: {
         url: "http://admin.damtour.co.id/program",
@@ -142,22 +130,31 @@ $(".program-selector").select2({
     templateSelection: formatProgramSelection
 });
 
-function formatParent (parent) {
-    if (parent.loading) return parent.text;
+function formatProgram (program) {
+    if (program.loading) return program.text;
     var markup = '<div class="clearfix">' +
         '<div clas="col-sm-10">' +
         '<div class="clearfix">' +
-        '<div class="col-sm-12"><h4>' + parent.name + '</h4></div>' +
+        '<div class="col-sm-12"><h4>' + program.service + ' ' + program.category + '</h4></div>' +
+        '<div class="col-sm-6">' + program.name + '</div>' +
+        '<div class="col-sm-6"><i>' + program.price + '</i></div>' +
+        '<div class="col-sm-6">' + program.package + '</div>' +
+        '<div class="col-sm-6"><i>' + program.schedule + ' (' + program.days_length + ')</i></div>' +
         '</div>';
-    markup += '</div>';
+
+    markup += '</div></div>';
 
     return markup;
 }
 
-function formatParentSelection (parent) {
-    return parent.id;
+function formatProgramSelection (program) {
+    return program.service + ' ' + program.name + ' - ' + program.price;
 }
 
+/*
+ * Parent & Sponsor Selector
+ * ==========================
+ * */
 $(".parent-selector, .sponsor-selector").select2({
     ajax: {
         url: "http://admin.damtour.co.id/network",
@@ -188,3 +185,68 @@ $(".parent-selector, .sponsor-selector").select2({
     templateSelection: formatParentSelection
 });
 
+function formatParent (parent) {
+    if (parent.loading) return parent.text;
+    var markup = '<div class="clearfix">' +
+        '<div clas="col-sm-10">' +
+        '<div class="clearfix">' +
+        '<div class="col-sm-12"><h4>' + parent.name + '</h4></div>' +
+        '</div>';
+    markup += '</div>';
+
+    return markup;
+}
+
+function formatParentSelection (parent) {
+    return parent.id;
+}
+
+
+/*
+* Invoice Selector
+* =====================
+* */
+$(".invoice-selector").select2({
+    ajax: {
+        url: "http://admin.damtour.co.id/invoice",
+        dataType: 'json',
+        delay: 100,
+        data: function (params) {
+            return {
+                q: params.term,
+                page: params.page
+            };
+        },
+        processResults: function (data, params) {
+            params.page = params.page || 1;
+
+            return {
+                results: data,
+                pagination: {
+                    more: (params.page * 30) < data.length
+                }
+            };
+        },
+        cache: true
+    },
+    escapeMarkup: function (markup) { return markup; },
+    minimumInputLength: 1,
+    templateResult: formatInvoice,
+    templateSelection: formatInvoiceSelection
+});
+
+function formatInvoice (invoice) {
+    if (invoice.loading) return invoice.text;
+    var markup = '<div class="clearfix">' +
+        '<div clas="col-sm-10">' +
+        '<div class="clearfix">' +
+        '<div class="col-sm-12"><h4>' + invoice.code + '</h4></div>' +
+        '</div>';
+    markup += '</div>';
+
+    return markup;
+}
+
+function formatInvoiceSelection (invoice) {
+    return '#'+invoice.code;
+}

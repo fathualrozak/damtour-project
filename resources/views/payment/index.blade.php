@@ -14,19 +14,17 @@
                     <th>Penyetor</th>
                     <th>No. Invoice</th>
                     <th>Cara Bayar</th>
-                    <th>Status</th>
                     <th>Admin</th>
                 </tr>
             </thead>
             <tbody>
         @foreach($payments as $payment)
-                <tr class="linked-row" route="{{ route('user.show', Hashids::encode($payment->id)) }}" token="{{ csrf_token() }}">
+                <tr class="linked-row" route="{{ route('payment.show', Hashids::encode($payment->id)) }}" token="{{ csrf_token() }}">
                     <td>{{ $payment->date }}</td>
                     <td>{{ $payment->amount }}</td>
                     <td>{{ $payment->payer->name }}</td>
                     <td>{{ $payment->invoice->code }}</td>
                     <td>{{ $payment->paymentMethod->name }}</td>
-                    <td>{{ $payment->paymentStatus->name }}</td>
                     <td>{{ $payment->user->name }}</td>
                 </tr>
         @endforeach

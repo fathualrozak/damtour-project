@@ -3,10 +3,10 @@
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Invoice;
+use App\Payer;
 use Illuminate\Http\Request;
 
-class InvoiceController extends Controller {
+class PayerController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -15,14 +15,11 @@ class InvoiceController extends Controller {
 	 */
 	public function index(Request $request)
 	{
-        if ($request->ajax()) {
-            $invoices = Invoice::all();
+		if ($request->ajax()) {
+            $payers = Payer::all();
 
-            return $invoices;
+            return $payers;
         }
-        $invoices = Invoice::all();
-
-        return view('invoice.index', compact('invoices'));
 	}
 
 	/**

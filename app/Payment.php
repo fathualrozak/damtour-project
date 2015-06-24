@@ -31,10 +31,6 @@ class Payment extends Model {
         return $this->belongsTo('App\PaymentMethod');
     }
 
-    public function paymentStatus() {
-        return $this->belongsTo('App\PaymentStatus');
-    }
-
     public function user() {
         return $this->belongsTo('App\User');
     }

@@ -30,6 +30,10 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('booking', 'BookingController', ['except' => ['edit', 'update', 'destroy']]);
 
     Route::resource('invoice', 'InvoiceController', ['only' => ['index', 'show']]);
+    Route::post('invoice', 'InvoiceController@index');
+
+    Route::get('payer', 'PayerController@index');
+
     Route::resource('payment', 'PaymentController');
 
     Route::get('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
