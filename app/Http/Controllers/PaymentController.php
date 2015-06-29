@@ -20,7 +20,7 @@ class PaymentController extends Controller {
 	 */
 	public function index()
 	{
-		$payments = Payment::paginate(2);
+		$payments = Payment::orderBy('date', 'desc')->paginate(15);
 
         return view('payment.index', compact('payments'));
 	}
@@ -45,7 +45,7 @@ class PaymentController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        $payer = Payer::findOrNew(['name' => $request->payer_name, 'contact' => $request->payer_contact]);
+        $payer = Payer::firstOrCreate(['name' => $request->payer_name, 'contact' => $request->payer_contact]);
 
         Payment::create([
             'date' => $request->input('date'),

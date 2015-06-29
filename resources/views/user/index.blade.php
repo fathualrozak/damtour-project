@@ -1,9 +1,9 @@
 @extends('layouts.dashboard')
-@section('page_heading','User')
+@section('page_heading','Staff')
 
     @section('section')
         <div>
-            <a href="{{ route('user.create') }}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Tambah User</a>
+            <a href="{{ route('user.create') }}" class="btn btn-default"><i class="fa fa-plus-circle"></i> Tambah Staff</a>
         </div>
         <hr>
         <table class="table table-condensed table-striped table-hover">

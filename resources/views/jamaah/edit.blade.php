@@ -20,9 +20,11 @@
                <div class="col-md-10 col-md-offset-1">
                    {!! Form::model($jamaah, array('method' => 'PATCH', 'route' => ['jamaah.update', Hashids::encode($jamaah->id) ])) !!}
                         @include('jamaah._form')
-                        <div class="form-group">
-                            <a href="{{ route('jamaah.show', Hashids::encode($jamaah->id)) }}" class="btn btn-warning">Cancel</a>
-                            {!! Form::submit('Update', ['class' => 'btn btn-success pull-right']) !!}
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <a href="{{ route('jamaah.show', Hashids::encode($jamaah->id)) }}" class="btn btn-warning">Cancel</a>
+                                {!! Form::submit('Update', ['class' => 'btn btn-success pull-right']) !!}
+                            </div>
                         </div>
                    {!! Form::close() !!}
                </div>

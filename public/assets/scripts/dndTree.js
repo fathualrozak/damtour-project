@@ -5,7 +5,7 @@
 // Get JSON data
     if ($("#tree-container").length) {
 
-
+        var treeWidth = $("#tree-container").width();
         var route = $("#tree-container").attr("route");
         var token = $('meta[name="csrf-token"]').attr('content');
 
@@ -29,8 +29,8 @@
                 var root;
 
                 // size of the diagram
-                var viewerWidth = 1085;
-                var viewerHeight = 530;
+                var viewerWidth = treeWidth;
+                var viewerHeight = 525;
 
                 var tree = d3.layout.tree()
                     .size([viewerHeight, viewerWidth]);

@@ -250,3 +250,50 @@ function formatInvoice (invoice) {
 function formatInvoiceSelection (invoice) {
     return '#'+invoice.code;
 }
+
+/*
+ * Program table ajax
+ * =====================
+ * */
+function programAjax(params) {
+    var result;
+    $.get(params.url, function(data) {
+        result =  data;
+    });
+    setTimeout(function () {
+        params.success(result);
+        params.complete();
+    }, 750);
+}
+
+var edit_route = $('#table-program').attr('data-edit-route');
+
+function operateFormatter(value, row, index) {
+    return [
+        '<a class="edit ml10" href="' + edit_route + '/' + row.id + '/edit' + '" title="Edit">',
+        '<i class="fa fa-edit fa-fw"></i>',
+        '</a>'
+    ].join('');
+}
+
+/*
+ * Form create Program
+ * =====================
+ * */
+if ($('form#create-program').length || $('form#edit-program').length ) {
+    if ($('#service_id').val() == 1) {
+        $('#schedule-input, #schedule-end-input').show();
+    } else if ($('#service_id').val() == 2) {
+        $('#schedule-input, #schedule-end-input').hide();
+    }
+
+    $('#service_id').change(function(){
+        if ($('#service_id').val() == 1) {
+            $('#schedule-input, #schedule-end-input, #payment-before-input').show();
+        } else if ($('#service_id').val() == 2) {
+            $('#schedule-input, #schedule-end-input, #payment-before-input').hide();
+            $('#schedule, #schedule-end, #payment_before').val('');
+        }
+    });
+}
+

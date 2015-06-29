@@ -18,6 +18,7 @@ elixir(function(mix) {
     mix.styles([
         'bower_components/bootstrap/dist/css/bootstrap.css',
         'bower_components/fontawesome/css/font-awesome.css',
+        'bower_components/bootstrap-table/dist/bootstrap-table.css',
         'resources/css/sb-admin-2.css',
         'resources/css/select2.css',
         'resources/css/timeline.css',
@@ -32,7 +33,9 @@ elixir(function(mix) {
         'bower_components/metisMenu/dist/metisMenu.js',
         'resources/js/sb-admin-2.js',
         'resources/js/select2.js',
-        'resources/js/bootstrap-select.js'
+        'resources/js/bootstrap-select.js',
+        'bower_components/bootstrap-table/dist/bootstrap-table.js',
+        'bower_components/bootstrap-table/dist/locale/bootstrap-table-id-ID.js'
         //'resources/js/custom.js',
         //'resources/js/dndTree.js'
     ], 'public/assets/scripts/scripts.js', './');

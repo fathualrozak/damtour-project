@@ -18,10 +18,8 @@ class CreateProgramsTable extends Migration {
 
             $table->string('name');
             $table->date('schedule')->nullable();
-            $table->integer('days_length')->nullable();
+            $table->date('schedule_end')->nullable();
             $table->double('price');
-            $table->enum('down_payment_type', ['fixed', 'percentage']);
-            $table->double('down_payment');
             $table->date('payment_before')->nullable();
             $table->text('description')->nullable();
 

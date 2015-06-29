@@ -38,6 +38,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::get('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
     Route::post('/network', ['as' => 'network.index', 'uses' => 'NetworkController@index']);
+
+    Route::group(['prefix' => 'api'], function() {
+        Route::resource('program', 'ProgramController', ['only' => ['index']]);
+    });
 });
 
 

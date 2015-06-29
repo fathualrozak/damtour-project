@@ -242,26 +242,21 @@
                                 </button>
                             </span>
                             </div>
-                            <!-- /input-group -->
                         </li>
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
-                            <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> User</a>
-                            <!-- /.nav-second-level -->
-                        </li>
                         <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
-                            <a href="{{ route('program.index') }}"><i class="fa fa-table fa-fw"></i> Program</a>
+                            <a href="{{ route('program.index') }}"><i class="fa fa-check-square-o fa-fw"></i> Program</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Inventory</a>
-                        </li>
+                        {{--<li {{ (Request::is('*forms') ? 'class="active"' : '') }}>--}}
+                            {{--<a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Inventory</a>--}}
+                        {{--</li>--}}
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ route('jamaah.index') }}"><i class="fa fa-male fa-fw"></i> Jamaah</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ route('booking.index') }}"><i class="fa fa-tasks fa-fw"></i> Booking</a>
+                            <a href="{{ route('booking.index') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
                         </li>
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ route('invoice.index') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
@@ -272,11 +267,14 @@
                         <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
                             <a href="{{ route('network.index') }}"><i class="fa fa-sitemap fa-fw"></i> Jaringan</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Bonus</a>
-                        </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Reward</a>
+                        {{--<li {{ (Request::is('*forms') ? 'class="active"' : '') }}>--}}
+                            {{--<a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Bonus</a>--}}
+                        {{--</li>--}}
+                        {{--<li {{ (Request::is('*forms') ? 'class="active"' : '') }}>--}}
+                            {{--<a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Reward</a>--}}
+                        {{--</li>--}}
+                        <li {{ (Request::is('*charts') ? 'class="active"' : '') }}>
+                            <a href="{{ route('user.index') }}"><i class="fa fa-user fa-fw"></i> Staff</a>
                         </li>
 
                     </ul>
@@ -287,18 +285,18 @@
         </nav>
 
         <div id="page-wrapper">
-			 <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header">@yield('page_heading')</h3>
+			    <div class="row">
+                    <div class="col-lg-12">
+                        <h3 class="page-header text-center">@yield('page_heading')</h3>
+                    </div>
+                    <!-- /.col-lg-12 -->
                 </div>
-                <!-- /.col-lg-12 -->
-           </div>
-			<div class="row">
-			    <div class="container-fluid">
-				    @yield('section')
-				</div>
-            </div>
-            <!-- /#page-wrapper -->
+                <div class="row">
+                    <div class="container-fluid">
+                        @yield('section')
+                    </div>
+                </div>
+                <!-- /#page-wrapper -->
         </div>
     </div>
 @stop

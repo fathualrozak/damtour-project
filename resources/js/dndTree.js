@@ -5,6 +5,8 @@
 // Get JSON data
 var route = $("#tree-container").attr("route");
 console.log(route);
+var treeWidth = $("#tree-container").width();
+alert(treeWidth);
 treeJSON = d3.json(route, function(error, treeData) {
 
     // Calculate total nodes, max label length
@@ -22,7 +24,7 @@ treeJSON = d3.json(route, function(error, treeData) {
     var root;
 
     // size of the diagram
-    var viewerWidth = 1085;
+    var viewerWidth = treeWidth;
     var viewerHeight = 530;
 
     var tree = d3.layout.tree()

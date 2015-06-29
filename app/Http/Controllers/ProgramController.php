@@ -18,11 +18,35 @@ class ProgramController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index(Request $request)
 	{
-        $programs = Program::all();
-
-		return view('program.index', compact('programs'));
+        if ($request->ajax()) {
+            if ($request->input('q')) {
+                $q = $request->get('q');
+                $programs = Program::where('name', 'LIKE', '%' . $q . '%')->get();
+            } else {
+                $programs = Program::all();
+            }
+            $result = $programs->map(function ($program) {
+                $schedule = !is_null($program->schedule) ? $program->schedule->format('d-m-Y') : '-';
+                $schedule_end = !is_null($program->schedule_end) ? $program->schedule_end->format('d-m-Y') : '-';
+                $remap = [
+                    'id' => Hashids::encode($program->id),
+                    'service' => $program->service->name,
+                    'name' => $program->name,
+                    'category' => $program->programCategory->name,
+                    'package' => $program->package->name,
+                    'schedule' => $schedule,
+                    'schedule_end' => $schedule_end,
+                    'price' => $program->currency->name . ' ' . number_format($program->price, 0, ',', '.'),
+                    'booked' => $program->booking->count()
+                ];
+                return $remap;
+            });
+            return $result;
+        } else {
+            return view('program.index');
+        }
 	}
 
 	/**
@@ -48,31 +72,14 @@ class ProgramController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-        if ($request->ajax()) {
-            $q = $request->get('q');
-            $programs = Program::where('name', 'LIKE', '%'.$q.'%')->get();
-
-            $result = $programs->map(function($program)
-            {
-                $remap = [
-                    'id' => Hashids::encode($program->id),
-                    'service' => $program->service->name,
-                    'name' => $program->name,
-                    'category' => $program->programCategory->name,
-                    'package' => $program->package->name,
-                    'schedule' => $program->schedule->format('d-M-Y'),
-                    'days_length' => $program->days_length.' Hari',
-                    'price' => $program->currency->name.' '.number_format($program->price,0,',','.'),
-                ];
-                return $remap;
-            });
-
-            return $result;
+        if ($request->input('service_id') == 2) {
+            $request = $request->except(['schedule', 'schedule_end', 'payment_before']);
         } else {
-            Program::create($request->all());
-
-            return redirect('program');
+            $request = $request->all();
         }
+        Program::create($request);
+
+        return redirect('program');
 	}
 
 	/**
@@ -94,14 +101,19 @@ class ProgramController extends Controller {
 	 */
 	public function edit($id)
 	{
-        $program = Program::find($id);
+        $id = Hashids::decode($id);
+        $program = Program::find($id[0]);
+
+        $schedule = !is_null($program->schedule) ? $program->schedule->format('Y-m-d') : null;
+        $schedule_end = !is_null($program->schedule_end) ? $program->schedule_end->format('Y-m-d') : null;
+        $payment_before = !is_null($program->payment_before) ? $program->payment_before->format('Y-m-d') : null;
 
         $reset = [
-            "schedule" => $program->schedule->format('Y-m-d'),
-            "payment_before" => $program->payment_before->format('Y-m-d'),
-            "down_payment" => $program->getOriginal('down_payment')
+            "schedule" => $schedule,
+            "schedule_end" => $schedule_end,
+            "payment_before" => $payment_before
         ];
-        unset($program->schedule, $program->payment_before, $program->down_payment);
+        unset($program->schedule, $program->payment_before);
 
         $program = $program->toArray();
         $program = array_merge($program, $reset);

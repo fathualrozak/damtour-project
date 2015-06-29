@@ -14,10 +14,8 @@ class Program extends Model {
     protected $fillable = [
         'name',
         'schedule',
-        'days_length',
+        'schedule_end',
         'price',
-        'down_payment_type',
-        'down_payment',
         'payment_before',
         'description',
         'service_id',
@@ -26,19 +24,32 @@ class Program extends Model {
         'currency_id'
     ];
 
-    protected $dates = ['schedule', 'payment_before'];
+    protected $dates = ['schedule', 'schedule_end', 'payment_before'];
 
-    public function getDownPaymentAttribute($downpayment) {
-        if ($this->down_payment_type == 'fixed') {
-            return $downpayment;
-        } else {
-            return ($this->price / 100) * $downpayment;
-        }
+//    public function getDownPaymentAttribute($downpayment) {
+//        if ($this->down_payment_type == 'fixed') {
+//            return $downpayment;
+//        } else {
+//            return ($this->price / 100) * $downpayment;
+//        }
+//    }
+//
+//    public function getPelunasanAttribute() {
+//        return $this->price - $this->down_payment;
+//    }
+
+
+    public function scopeHaji($query) {
+        $service = Service::whereName('Haji')->first();
+        return $query->where('service_id', '=', $service->id);
     }
 
-    public function getPelunasanAttribute() {
-        return $this->price - $this->down_payment;
+    public function scopeUmroh($query) {
+        $service = Service::whereName('Umroh')->first();
+        return $query->where('service_id', '=', $service->id);
     }
+
+
 
     /**
      * Relationships
