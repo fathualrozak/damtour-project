@@ -1,5 +1,5 @@
 @extends('layouts.dashboard')
-@section('page_heading', 'Profile')
+@section('page_heading', $jamaah->firstname.' '.$jamaah->lastname)
 @section('section')
 
 
@@ -10,19 +10,30 @@
                    <ul class="list-inline">
                      <li class="col-xs-12">
                        <span class="btn-group pull-right">
-                         <a href="{{ route('jamaah.edit', Hashids::encode($jamaah->id)) }}" class="btn btn-warning"><i class="fa fa-edit"></i> Edit Data</a>
+                        <a href="{{ route('jamaah.index') }}" class="btn btn-primary"><i class="fa fa-times"></i></a>
                        </span>
-                       <h4>{{ $jamaah->firstname.' '.$jamaah->lastname }}</h4>
+                       <h4>Profile</h4>
                      </li>
                    </ul>
                    <div class="clearfix"></div>
                 </div>
                 <div class="panel-body">
                     <div class="row">
+                        <div class="col-md-12">
+                            <div class="btn-group pull-right">
+                                <a href="{{ route('jamaah.edit', Hashids::encode($jamaah->id)) }}" class="btn btn-default">
+                                    <i class="fa fa-edit fa-fw"></i> Edit Profile
+                                </a>
+                                <a href="#" class="btn btn-default"><i class="fa fa-print fa-fw"></i> Print</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-3 col-lg-3 " align="center">
                             {!! Html::image('img/profile.jpg', 'Jamaah', ['class' => 'img-profile']) !!}
                             <hr>
-                            <a href="#" class="btn btn-primary btn-block">Program</a><br>
+                            <a href="#" class="btn btn-default btn-block">Data Booking</a><br>
+                            <a href="#" class="btn btn-default btn-block">Riwayat Pembayaran</a><br>
                         </div>
                         <div class=" col-md-9 col-lg-9 ">
                              <table class="table table-user-information">
@@ -95,9 +106,6 @@
                               </table>
                         </div>
                     </div>
-                </div>
-                <div class="panel-footer">
-                    <a href="{{ route('jamaah.index') }}" class="btn btn-primary"> List Jamaah</a>
                 </div>
          </div>
 

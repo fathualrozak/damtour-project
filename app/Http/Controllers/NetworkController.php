@@ -17,16 +17,15 @@ class NetworkController extends Controller {
 	public function index(Request $request)
 	{
         if($request->ajax()) {
-
-
             $networks = Network::all();
 
             $networks = $networks->map(function ($network) {
-                $name = $network->book ? $network->fullName : "System";
+                $name = !is_null($network->book) ? $network->fullName : "System";
                 $network->name = $name;
 
                 return $network;
             });
+
             if ($request->input('list')) {
                 return $networks;
             } else {

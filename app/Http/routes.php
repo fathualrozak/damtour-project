@@ -41,6 +41,8 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'api'], function() {
         Route::resource('program', 'ProgramController', ['only' => ['index']]);
+        Route::resource('jamaah', 'JamaahController', ['only' => ['index']]);
+        Route::resource('network', 'NetworkController', ['only' => ['index']]);
     });
 });
 

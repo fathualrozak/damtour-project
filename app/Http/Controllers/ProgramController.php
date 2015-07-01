@@ -151,10 +151,10 @@ class ProgramController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		$program = Program::find($id);
-        $program->delete();
-
-        return redirect('program');
+//		$program = Program::find($id);
+//        $program->delete();
+//
+//        return redirect('program');
 	}
 
 }

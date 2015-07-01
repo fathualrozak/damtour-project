@@ -50,9 +50,11 @@ $('button').click(function(e) {
  * Jamaah Selector
  * ==========================
  * */
+var jamaah_api_route = $('#jamaah_api_route').val();
 $(".jamaah-selector").select2({
     ajax: {
-        url: "http://admin.damtour.co.id/jamaah",
+        url: jamaah_api_route,
+        method: 'GET',
         dataType: 'json',
         delay: 100,
         data: function (params) {
@@ -82,10 +84,10 @@ $(".jamaah-selector").select2({
 function formatJamaah (jamaah) {
     if (jamaah.loading) return jamaah.text;
     var markup = '<div class="clearfix">' +
-        '<div clas="col-sm-10">' +
+        '<div clas="col-sm-12">' +
         '<div class="clearfix">' +
         '<div class="col-sm-6">' + jamaah.firstname + ' ' + jamaah.lastname + '</div>' +
-        '<div class="col-sm-6"><i class="fa fa-credit-card"></i> ' + jamaah.idcard_number + '</div>' +
+        '<div class="col-sm-6">' + jamaah.address.district.name + ' - ' + jamaah.address.city.name + '</div>' +
         '</div>';
 
     markup += '</div></div>';
@@ -94,16 +96,19 @@ function formatJamaah (jamaah) {
 }
 
 function formatJamaahSelection (jamaah) {
-    return jamaah.firstname + ' ' + jamaah.lastname + ' - ' + jamaah.idcard_number;
+    return jamaah.firstname + ' ' + jamaah.lastname + ' (' + jamaah.address.district.name + ' - ' + jamaah.address.city.name +')';
 }
 
 /*
  * Program Selector
  * ==========================
  * */
+
+var program_api_route = $('#program_api_route').val();
 $(".program-selector").select2({
     ajax: {
-        url: "http://admin.damtour.co.id/program",
+        url: program_api_route,
+        method: 'GET',
         dataType: 'json',
         delay: 100,
         data: function (params) {
@@ -135,11 +140,11 @@ function formatProgram (program) {
     var markup = '<div class="clearfix">' +
         '<div clas="col-sm-10">' +
         '<div class="clearfix">' +
-        '<div class="col-sm-12"><h4>' + program.service + ' ' + program.category + '</h4></div>' +
-        '<div class="col-sm-6">' + program.name + '</div>' +
+        '<div class="col-sm-12"><h4>' + program.name + '</h4></div>' +
+        '<div class="col-sm-6">Layanan: ' + program.service + ' ' + program.category + '</div>' +
         '<div class="col-sm-6"><i>' + program.price + '</i></div>' +
-        '<div class="col-sm-6">' + program.package + '</div>' +
-        '<div class="col-sm-6"><i>' + program.schedule + ' (' + program.days_length + ')</i></div>' +
+        '<div class="col-sm-6">Paket: ' + program.package + '</div>' +
+        '<div class="col-sm-6"><i>' + program.schedule + ' s/d ' + program.schedule_end + '</i></div>' +
         '</div>';
 
     markup += '</div></div>';
@@ -155,9 +160,11 @@ function formatProgramSelection (program) {
  * Parent & Sponsor Selector
  * ==========================
  * */
+var network_api_route = $('#network_api_route').val();
 $(".parent-selector, .sponsor-selector").select2({
     ajax: {
-        url: "http://admin.damtour.co.id/network",
+        url: network_api_route,
+        method: 'GET',
         dataType: 'json',
         delay: 100,
         data: function (params) {
@@ -190,7 +197,7 @@ function formatParent (parent) {
     var markup = '<div class="clearfix">' +
         '<div clas="col-sm-10">' +
         '<div class="clearfix">' +
-        '<div class="col-sm-12"><h4>' + parent.name + '</h4></div>' +
+        '<div class="col-sm-12"><h4>' + parent.name + '-' + parent.id + '</h4></div>' +
         '</div>';
     markup += '</div>';
 
@@ -198,7 +205,7 @@ function formatParent (parent) {
 }
 
 function formatParentSelection (parent) {
-    return parent.id;
+    return parent.name + '-' + parent.id;
 }
 
 
@@ -263,28 +270,31 @@ function programAjax(params) {
     setTimeout(function () {
         params.success(result);
         params.complete();
-    }, 750);
+    }, 1000);
 }
 
-var edit_route = $('#table-program').attr('data-edit-route');
+var program_edit_route = $('#table-program').attr('data-edit-route');
 
-function operateFormatter(value, row, index) {
+function programOperateFormatter(value, row, index) {
     return [
-        '<a class="edit ml10" href="' + edit_route + '/' + row.id + '/edit' + '" title="Edit">',
+        '<a class="edit ml10" href="' + program_edit_route + '/' + row.id + '/edit' + '" title="Edit">',
         '<i class="fa fa-edit fa-fw"></i>',
         '</a>'
     ].join('');
 }
 
 /*
- * Form create Program
+ * Form create & edit program
+ * service_id :
+ * 1 = Umroh
+ * 2 = Haji
  * =====================
  * */
 if ($('form#create-program').length || $('form#edit-program').length ) {
     if ($('#service_id').val() == 1) {
-        $('#schedule-input, #schedule-end-input').show();
+        $('#schedule-input, #schedule-end-input, #payment-before-input').show();
     } else if ($('#service_id').val() == 2) {
-        $('#schedule-input, #schedule-end-input').hide();
+        $('#schedule-input, #schedule-end-input, #payment-before-input').hide();
     }
 
     $('#service_id').change(function(){
@@ -296,4 +306,47 @@ if ($('form#create-program').length || $('form#edit-program').length ) {
         }
     });
 }
+
+/*
+ * Jamaah table ajax
+ * =====================
+ * */
+var jamaah_route = $('#table-jamaah').attr('data-route')+'/';
+ function jamaahAjax(params) {
+    var result;
+    $.get(params.url, function(data) {
+        result =  data;
+    });
+    setTimeout(function () {
+        params.success(result);
+        params.complete();
+    }, 1000);
+}
+
+$('#table-jamaah').on('click-row.bs.table', function(e, row, $element){
+    window.location = jamaah_route + row.id;
+});
+
+function jamaahAddressFormatter(value, row, index) {
+    return [row.address.district.name, row.address.city.name].join(' - ');
+}
+
+function jamaahNameFormatter(value, row, index) {
+    return [row.firstname, row.lastname].join(' ');
+}
+
+function jamaahGenderFormatter(value, row, index) {
+    return (row.gender == 'male') ? 'Laki-laki' : 'Perempuan';
+}
+
+
+//function jamaahOperateFormatter(value, row, index) {
+//    return [
+//        '<a class="edit ml10" href="' + jamaah_edit_route + '/' + row.id + '/edit' + '" title="Edit">',
+//        '<i class="fa fa-edit fa-fw"></i>',
+//        '</a>'
+//    ].join('');
+//}
+
+
 

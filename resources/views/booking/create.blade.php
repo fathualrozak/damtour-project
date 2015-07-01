@@ -17,6 +17,9 @@
                <div class="panel-body">
                <div class="col-md-10 col-md-offset-1">
                    {!! Form::open(array('route' => 'booking.store')) !!}
+                       <input type="hidden" id="jamaah_api_route" value="{{ route('api.jamaah.index') }}">
+                       <input type="hidden" id="program_api_route" value="{{ route('api.program.index') }}">
+                       <input type="hidden" id="network_api_route" value="{{ route('api.network.index') }}">
                        <div class="form-group">
                            {!! Form::label('jamaah_id', 'Jamaah') !!}
                            {!! Form::select('jamaah_id', [], null, [

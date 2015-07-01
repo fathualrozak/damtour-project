@@ -21,7 +21,7 @@
                 data-locale="id-ID">
             <thead>
             <tr>
-                <th data-field="operate" data-align="center" data-formatter="operateFormatter"></th>
+                <th data-field="operate" data-align="center" data-formatter="programOperateFormatter"></th>
                 <th data-field="service" data-align="center" data-sortable="true">Layanan</th>
                 <th data-field="name" data-align="left" data-sortable="true">Nama Program</th>
                 <th data-field="category" data-align="left" data-sortable="true">Kategori</th>
