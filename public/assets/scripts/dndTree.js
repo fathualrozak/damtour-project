@@ -438,7 +438,6 @@ if ($("#tree-container").length) {
                 if (d3.event.defaultPrevented) return; // click suppressed
                 if (d.create) {
                     $("#startWizardModal").modal();
-                    //alert("parent_id: "+d.parent.id + "; pos: "+ d.pos );
                 } else {
                     d = toggleChildren(d);
                     update(d);

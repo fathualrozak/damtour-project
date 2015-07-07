@@ -348,5 +348,3 @@ $("#btn-registered-modal").click(function(){
     $("#startWizardModal").modal("hide");
     $("#bookingModal").modal("show");
 });
-
-

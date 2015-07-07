@@ -251,27 +251,28 @@
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        <li {{ (Request::is('*tables') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('*program') ? 'class="active"' : '') }}>
                             <a href="{{ route('program.index') }}"><i class="fa fa-check-square-o fa-fw"></i> Program</a>
                         </li>
                         {{--<li {{ (Request::is('*forms') ? 'class="active"' : '') }}>--}}
                             {{--<a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Inventory</a>--}}
                         {{--</li>--}}
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('*jamaah') ? 'class="active"' : '') }}>
                             <a href="{{ route('jamaah.index') }}"><i class="fa fa-male fa-fw"></i> Jamaah</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('*booking') ? 'class="active"' : '') }}>
                             <a href="{{ route('booking.index') }}"><i class="fa fa-edit fa-fw"></i> Booking</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('*network') ? 'class="active"' : '') }}>
+                                                    <a href="{{ route('network.index') }}"><i class="fa fa-sitemap fa-fw"></i> Jaringan</a>
+                                                </li>
+                        <li {{ (Request::is('*invoice') ? 'class="active"' : '') }}>
                             <a href="{{ route('invoice.index') }}"><i class="fa fa-file-text fa-fw"></i> Invoice</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
+                        <li {{ (Request::is('*payment') ? 'class="active"' : '') }}>
                             <a href="{{ route('payment.index') }}"><i class="fa fa-money fa-fw"></i> Payment</a>
                         </li>
-                        <li {{ (Request::is('*forms') ? 'class="active"' : '') }}>
-                            <a href="{{ route('network.index') }}"><i class="fa fa-sitemap fa-fw"></i> Jaringan</a>
-                        </li>
+
                         {{--<li {{ (Request::is('*forms') ? 'class="active"' : '') }}>--}}
                             {{--<a href="{{ url ('#') }}"><i class="fa fa-edit fa-fw"></i> Bonus</a>--}}
                         {{--</li>--}}
