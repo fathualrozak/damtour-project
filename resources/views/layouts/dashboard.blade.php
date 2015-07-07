@@ -1,6 +1,11 @@
 @extends('layouts.plane')
 
 @section('body')
+@if( Request::is('*network') )
+    @include('...modals.start_wizard')
+    @include('...modals.registration')
+    @include('...modals.booking')
+@endif
  <div id="wrapper">
 
         <!-- Navigation -->
@@ -283,7 +288,11 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
-
+        @if( Request::is('*network') )
+            <div class="full-canvas">
+                @yield('full-canvas')
+            </div>
+        @else
         <div id="page-wrapper">
 			    <div class="row">
                     <div class="col-lg-12">
@@ -296,8 +305,10 @@
                         @yield('section')
                     </div>
                 </div>
+
                 <!-- /#page-wrapper -->
         </div>
+        @endif
     </div>
 @stop
 

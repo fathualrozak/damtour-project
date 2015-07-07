@@ -38,14 +38,6 @@ panelsButton.click(function() {
 });
 
 
-$('[data-toggle="tooltip"]').tooltip();
-
-$('button').click(function(e) {
-    e.preventDefault();
-    alert("This is a demo.\n :-)");
-});
-
-
 /*
  * Jamaah Selector
  * ==========================
@@ -348,5 +340,13 @@ function jamaahGenderFormatter(value, row, index) {
 //    ].join('');
 //}
 
+$("#btn-register-modal").click(function(){
+    $("#startWizardModal").modal("hide");
+    $("#registrationModal").modal("show");
+});
+$("#btn-registered-modal").click(function(){
+    $("#startWizardModal").modal("hide");
+    $("#bookingModal").modal("show");
+});
 
 

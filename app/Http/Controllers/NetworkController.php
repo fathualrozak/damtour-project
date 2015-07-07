@@ -1,10 +1,13 @@
 <?php namespace App\Http\Controllers;
 
+use App\City;
+use App\District;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Jamaah;
 use App\Network;
+use App\Relationship;
 use Illuminate\Http\Request;
 
 class NetworkController extends Controller {
@@ -34,7 +37,13 @@ class NetworkController extends Controller {
 
         } else {
             $networks = Network::all();
-            return view('network.index', compact('networks'));
+
+            $properties = getProperties();
+            $districts = District::all()->lists('name', 'id');
+            $cities = City::all()->lists('name', 'id');
+            $relationships = Relationship::all()->lists('name', 'id');
+
+            return view('network.index', compact('networks', 'properties', 'districts', 'cities', 'relationships'));
         }
 	}
 

@@ -12,7 +12,7 @@ class Network extends Node {
     ];
 
     public function getFullNameAttribute() {
-        return $this->book->jamaah->firstname." ". $this->book->jamaah->lastname;
+        return $this->book->jamaah->firstname; //." ". $this->book->jamaah->lastname;
     }
     public function book() {
         return $this->hasOne('App\Booking');

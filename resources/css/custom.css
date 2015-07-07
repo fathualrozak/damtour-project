@@ -32,6 +32,7 @@
 
 .overlay{
     background-color:#EEE;
+    background-image: url("../../img/grid.png");
 }
 
 .node circle {
@@ -63,4 +64,19 @@
 
 .ghostCircle, .activeDrag .ghostCircle{
     display: none;
+}
+.full-canvas {
+    position: inherit;
+    margin: 0 0 0 250px;
+    border-left: 1px solid #e7e7e7;
+    min-height: 616px;
+    max-width: 100%;
+}
+
+.modal-dialog {
+    overflow-y: initial !important;
+}
+.modal-body {
+    height: 460px;
+    overflow-y: auto;
 }
