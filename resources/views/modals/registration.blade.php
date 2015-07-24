@@ -7,13 +7,13 @@
       </div>
       <div class="modal-body">
         <div class="col-md-12">
-            {!! Form::open(array('route' => 'jamaah.store')) !!}
+            {!! Form::open(array('route' => 'api.jamaah.store', 'id' => 'form-reg-jamaah')) !!}
                 @include('...jamaah._form')
             {!! Form::close() !!}
         </div>
       </div>
       <div class="modal-footer">
-            {!! Form::submit('Daftar', ['class' => 'btn btn-primary']) !!}
+            <button id="btn-store-jamaah" class="btn btn-primary">Daftar</button>
       </div>
     </div>
   </div>

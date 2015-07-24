@@ -348,3 +348,7 @@ $("#btn-registered-modal").click(function(){
     $("#startWizardModal").modal("hide");
     $("#bookingModal").modal("show");
 });
+
+$("#btn-store-jamaah").click(function(){
+    $("#form-reg-jamaah").submit();
+});

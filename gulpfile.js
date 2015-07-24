@@ -34,6 +34,7 @@ elixir(function(mix) {
         'resources/js/sb-admin-2.js',
         'resources/js/select2.js',
         'resources/js/bootstrap-select.js',
+        'resources/js/jquery.validate.min.js',
         'bower_components/bootstrap-table/dist/bootstrap-table.js',
         'bower_components/bootstrap-table/dist/locale/bootstrap-table-id-ID.js'
         //'resources/js/custom.js',

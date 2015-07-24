@@ -11,6 +11,7 @@ use App\Jamaah;
 use App\Relationship;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Vinkla\Hashids\Facades\Hashids;
 
 class JamaahController extends Controller {
@@ -78,8 +79,11 @@ class JamaahController extends Controller {
 
         Heir::create($request);
 
-        return redirect('jamaah');
-
+        if ($request->ajax()) {
+            return Response::make('', '200');
+        } else {
+            return redirect('jamaah');
+        }
 	}
 
 	/**

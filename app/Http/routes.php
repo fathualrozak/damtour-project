@@ -11,12 +11,12 @@
 |
 */
 
-Route::controllers([
-    'auth' => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
-]);
+//Route::controllers([
+//    'auth' => 'Auth\AuthController',
+//    'password' => 'Auth\PasswordController',
+//]);
 
-Route::group(['middleware' => ['auth']], function() {
+//Route::group(['middleware' => ['auth']], function() {
     Route::get('/', 'DashboardController@index');
 
     Route::get('dashboard', 'DashboardController@index');
@@ -41,10 +41,10 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::group(['prefix' => 'api'], function() {
         Route::resource('program', 'ProgramController', ['only' => ['index']]);
-        Route::resource('jamaah', 'JamaahController', ['only' => ['index']]);
+        Route::resource('jamaah', 'JamaahController', ['only' => ['index', 'store']]);
         Route::resource('network', 'NetworkController', ['only' => ['index']]);
     });
-});
+//});
 
 
 

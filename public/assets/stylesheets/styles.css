@@ -9767,7 +9767,7 @@ canvas.round {
 }
 
 .modal-dialog {
-    overflow-y: inherit;
+    overflow-y: initial !important;
 }
 .modal-body {
     height: 460px;
